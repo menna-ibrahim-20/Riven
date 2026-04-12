@@ -1,0 +1,24 @@
+.clear-parent {
+  height: 72px;
+  width: 72px;
+  position: relative;
+  box-shadow: var(--Shadows-Component-elevation-inputs-small-elements);
+  border-radius: 999px;
+  background-color: var(--Primary-primary-main-500);
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.clear-parent:hover {
+  background-color: #08848d;
+}
+.clear-icon-fa {
+  font-size: 26px;
+  color: #ffffff;
+  z-index: 2;
+  position: relative;
+}

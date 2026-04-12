@@ -1,0 +1,19 @@
+<button
+  class="cta-w-button"
+  [attr.data-property1]="property1"
+  [ngStyle]="profileStyle"
+>
+  <img
+    class="profile-icon2"
+    alt=""
+    src="/assets/Profile.svg"
+    [ngStyle]="profileIconStyle"
+  />
+  <div
+    class="update-readiness"
+    *ngIf="showUpdateReadiness"
+    [ngStyle]="updateReadinessStyle"
+  >
+    {{text}}
+  </div>
+</button>

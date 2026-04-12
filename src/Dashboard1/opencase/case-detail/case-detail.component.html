@@ -1,0 +1,446 @@
+<div class="page-wrapper">
+
+  <!-- Back Button -->
+  <button class="back-btn" (click)="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back to Dashboard
+  </button>
+
+  <h1 class="page-title">Patient's Medical Report</h1>
+
+  <!-- Loading -->
+  <div class="loading-state" *ngIf="isLoading">
+    <div class="spinner-ring"></div>
+    <span>Loading case data…</span>
+  </div>
+
+  <!-- Error -->
+  <div class="error-banner" *ngIf="hasError && !isLoading">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    Failed to load case. Showing sample data.
+  </div>
+
+  <div class="report-grid" *ngIf="!isLoading">
+
+    <!-- ══════════════════════════════
+         LEFT COLUMN
+    ══════════════════════════════ -->
+    <div class="left-col">
+
+      <!-- ── Patient Summary ── -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-row">
+            <div class="icon-circle red-circle">
+              <i class="fa-regular fa-user"></i>
+            </div>
+            <h2 class="card-title">Patient Summary</h2>
+          </div>
+          <span class="time-badge">
+            <i class="fa-regular fa-clock"></i> 30 min ago
+          </span>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Info Grid -->
+        <div class="summary-grid">
+          <div class="summary-item">
+            <span class="s-label">Case ID</span>
+            <span class="s-value mono">{{ caseData.id }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="s-label">Date</span>
+            <span class="s-value">{{ caseData.date }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="s-label">Time</span>
+            <span class="s-value">{{ caseData.time }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="s-label">Name</span>
+            <span class="s-value">{{ caseData.name }}</span>
+          </div>
+          <div class="summary-item">
+            <span class="s-label">Age</span>
+            <span class="s-value">{{ caseData.age }} Years</span>
+          </div>
+          <div class="summary-item">
+            <span class="s-label">Gender</span>
+            <span class="s-value">{{ caseData.gender }}</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- AI Diagnosis -->
+        <div class="diagnosis-row">
+          <span class="s-label">AI Diagnosis</span>
+          <div class="diag-right">
+            <span class="diagnosis-badge">
+              <i class="fa-solid fa-circle-exclamation"></i>
+              {{ caseData.aiDiagnosis }}
+            </span>
+            <span class="nihss-text">NIHSS: {{ caseData.nihss }}</span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Risk Factors -->
+        <div class="tags-section">
+          <span class="s-label">Risk Factors</span>
+          <div class="tags-row">
+            <span class="tag tag--risk" *ngFor="let r of caseData.riskFactors">
+              <i class="fa-solid fa-triangle-exclamation"></i> {{ r }}
+            </span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Symptoms -->
+        <div class="tags-section">
+          <span class="s-label">Present Symptoms</span>
+          <div class="tags-row">
+            <span class="tag tag--symptom" *ngFor="let s of caseData.symptoms">
+              <i class="fa-solid fa-circle-exclamation"></i> {{ s }}
+            </span>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Vitals -->
+        <div class="vitals-section">
+          <span class="s-label">Vital Signs</span>
+          <div class="vitals-grid">
+            <div class="vital-card vital--danger">
+              <span class="vital-label">Blood Pressure</span>
+              <span class="vital-value">{{ caseData.vitals.bloodPressure }}</span>
+            </div>
+            <div class="vital-card">
+              <span class="vital-label">Heart Rate</span>
+              <span class="vital-value">{{ caseData.vitals.heartRate }}</span>
+            </div>
+            <div class="vital-card">
+              <span class="vital-label">Respiratory Rate</span>
+              <span class="vital-value">{{ caseData.vitals.respiratoryRate }}</span>
+            </div>
+            <div class="vital-card vital--warning">
+              <span class="vital-label">Oxygen Saturation</span>
+              <span class="vital-value">{{ caseData.vitals.oxygenSaturation }}</span>
+            </div>
+            <div class="vital-card">
+              <span class="vital-label">Temperature</span>
+              <span class="vital-value">{{ caseData.vitals.temperature }}</span>
+            </div>
+            <div class="vital-card">
+              <span class="vital-label">Glucose Level</span>
+              <span class="vital-value">{{ caseData.vitals.glucoseLevel }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- PDF File -->
+        <div class="file-row file-blue">
+          <div class="file-icon blue-icon">
+            <i class="fa-regular fa-file-pdf"></i>
+          </div>
+          <span class="file-name">File / Detailed Test.pdf</span>
+          <button class="dl-btn"
+            (click)="downloadFile(caseData.files.detailedTest,
+              'Detailed-Test-' + caseId + '.pdf')"
+            title="Download PDF">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- ── ECG Analysis ── -->
+      <div class="card">
+        <div class="card-title-row">
+          <div class="icon-circle red-circle">
+            <i class="fa-solid fa-heart-pulse"></i>
+          </div>
+          <h2 class="card-title">ECG Analysis</h2>
+        </div>
+
+        <!-- Waveform -->
+        <div class="ecg-display">
+          <svg viewBox="0 0 500 80"
+               preserveAspectRatio="none"
+               class="ecg-svg"
+               xmlns="http://www.w3.org/2000/svg">
+            <polyline
+              points="0,40 40,40 55,40 65,5 75,75 85,40 125,40
+                      165,40 175,40 185,5 195,75 205,40 245,40
+                      285,40 295,40 305,5 315,75 325,40 365,40
+                      405,40 415,40 425,5 435,75 445,40 500,40"
+              fill="none"
+              stroke="#0aa3b2"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"/>
+          </svg>
+        </div>
+
+        <!-- ECG Image Result -->
+        <div class="result-block">
+          <div class="result-row-item result--red">
+            <div class="res-icon-wrap red-wrap">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <span class="res-text">ECG Test Image Results</span>
+            <span class="res-badge red-badge">Mi</span>
+          </div>
+          <div class="file-row file-blue">
+            <div class="file-icon blue-icon">
+              <i class="fa-regular fa-image"></i>
+            </div>
+            <span class="file-name">Image / ECG Test Image.png</span>
+            <button class="dl-btn"
+              (click)="downloadImage(caseData.files.ecgImage,
+                'ECG-Image-' + caseId + '.png')"
+              title="Download ECG Image">
+              <i class="fa-solid fa-download"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- ECG Signal Result -->
+        <div class="result-block">
+          <div class="result-row-item result--red">
+            <div class="res-icon-wrap red-wrap">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <span class="res-text">ECG Test Signal Results</span>
+            <span class="res-badge red-badge">AF</span>
+          </div>
+          <div class="file-row file-yellow">
+            <div class="file-icon yellow-icon">
+              <i class="fa-regular fa-file"></i>
+            </div>
+            <span class="file-name">File_1 / ECG Test Signal.hea</span>
+            <button class="dl-btn"
+              (click)="downloadFile(caseData.files.ecgSignalHea,
+                'ECG-Signal-' + caseId + '.hea')"
+              title="Download Signal HEA">
+              <i class="fa-solid fa-download"></i>
+            </button>
+          </div>
+          <div class="file-row file-yellow">
+            <div class="file-icon yellow-icon">
+              <i class="fa-regular fa-file"></i>
+            </div>
+            <span class="file-name">File_2 / ECG Test Signal.mat</span>
+            <button class="dl-btn"
+              (click)="downloadFile(caseData.files.ecgSignalMat,
+                'ECG-Signal-' + caseId + '.mat')"
+              title="Download Signal MAT">
+              <i class="fa-solid fa-download"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── CT Analysis ── -->
+      <div class="card">
+        <div class="card-title-row">
+          <div class="icon-circle teal-circle">
+            <i class="fa-solid fa-brain"></i>
+          </div>
+          <h2 class="card-title">CT Analysis</h2>
+        </div>
+
+        <div class="ct-grid">
+          <div class="ct-image">
+            <i class="fa-solid fa-brain ct-brain-icon"></i>
+          </div>
+          <div class="ct-image">
+            <i class="fa-solid fa-brain ct-brain-icon"></i>
+          </div>
+        </div>
+
+        <div class="result-block">
+          <div class="result-row-item result--red">
+            <div class="res-icon-wrap red-wrap">
+              <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+            <span class="res-text">CT Test Results</span>
+            <span class="res-badge red-badge">Ischemic</span>
+          </div>
+          <div class="file-row file-blue">
+            <div class="file-icon blue-icon">
+              <i class="fa-regular fa-image"></i>
+            </div>
+            <span class="file-name">Image / ECG Test Image.png</span>
+            <button class="dl-btn"
+              (click)="downloadImage(caseData.files.ctImage1,
+                'CT-Image-1-' + caseId + '.png')"
+              title="Download CT Image 1">
+              <i class="fa-solid fa-download"></i>
+            </button>
+          </div>
+          <div class="file-row file-blue">
+            <div class="file-icon blue-icon">
+              <i class="fa-regular fa-image"></i>
+            </div>
+            <span class="file-name">Image / ECG Test Image.png</span>
+            <button class="dl-btn"
+              (click)="downloadImage(caseData.files.ctImage2,
+                'CT-Image-2-' + caseId + '.png')"
+              title="Download CT Image 2">
+              <i class="fa-solid fa-download"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── NIHSS Assessment ── -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title-row">
+            <div class="icon-circle red-circle">
+              <i class="fa-solid fa-heart-pulse"></i>
+            </div>
+            <h2 class="card-title">NIHSS Assessment</h2>
+          </div>
+          <div class="nihss-score-badge">
+            <i class="fa-solid fa-heart-pulse" style="color:#d64545;font-size:11px;"></i>
+            Score: {{ caseData.nihssTotal }} / {{ caseData.nihssMax }}
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="nihss-list">
+          <div class="nihss-item" *ngFor="let item of caseData.nihssScores">
+            <span class="nihss-name">• {{ item.name }}</span>
+            <div class="nihss-score-circle">{{ item.score }}</div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="result-row-item result--red">
+          <div class="res-icon-wrap red-wrap">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+          </div>
+          <span class="res-text">NIHSS Results</span>
+          <span class="res-badge red-badge">{{ caseData.nihssResult }}</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ══════════════════════════════
+         RIGHT COLUMN
+    ══════════════════════════════ -->
+    <div class="right-col">
+
+      <!-- ── Case Actions ── -->
+      <div class="card">
+        <div class="card-title-row">
+          <div class="icon-circle teal-circle">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <h2 class="card-title">Case Actions</h2>
+        </div>
+
+        <!-- Map -->
+        <div class="map-preview" (click)="openTracking()">
+          <img
+            src="../../../assets/img/Map.png"
+            alt="Live Map"
+            class="map-img"
+            (error)="$any($event.target).style.display='none'"
+          />
+          <div class="map-placeholder">
+            <i class="fa-solid fa-map-location-dot"></i>
+            <span>Click to view live map</span>
+          </div>
+        </div>
+
+        <button class="action-btn btn-teal" (click)="openTracking()">
+          <i class="fa-solid fa-location-arrow"></i>
+          View Live Tracking
+        </button>
+        <button class="action-btn btn-outline" (click)="onCallAmbulance()">
+          <i class="fa-solid fa-phone"></i>
+          Call Ambulance
+        </button>
+      </div>
+
+      <!-- Modal -->
+      <div class="modal-overlay"
+           *ngIf="showTrackingModal"
+           (click)="closeTracking()">
+        <div class="modal-card" (click)="$event.stopPropagation()">
+          <app-map-root (close)="closeTracking()"></app-map-root>
+        </div>
+      </div>
+
+      <!-- ── Hospital Readiness ── -->
+      <div class="card">
+        <div class="card-title-row">
+          <div class="icon-circle teal-circle">
+            <i class="fa-solid fa-hospital"></i>
+          </div>
+          <h2 class="card-title">Hospital Readiness</h2>
+        </div>
+
+        <div class="readiness-list">
+          <div class="readiness-item"
+               *ngFor="let item of caseData.hospitalReadiness">
+            <span class="readiness-label">• {{ item.label }}</span>
+            <input
+              type="checkbox"
+              [(ngModel)]="item.done"
+              class="readiness-check"
+            />
+          </div>
+        </div>
+
+        <button class="action-btn btn-teal"
+          (click)="updateReadiness()"
+          [disabled]="isSavingReadiness">
+          <span *ngIf="isSavingReadiness" class="btn-spinner"></span>
+          <i *ngIf="!isSavingReadiness" class="fa-solid fa-rotate"></i>
+          {{ isSavingReadiness ? 'Saving...' : 'Update Readiness' }}
+        </button>
+
+        <div class="success-toast" *ngIf="readinessSaved">
+          <i class="fa-solid fa-circle-check"></i>
+          Readiness updated successfully!
+        </div>
+      </div>
+
+      <!-- ── Extra Test Images ── -->
+      <div class="card">
+        <div class="card-title-row">
+          <div class="icon-circle teal-circle">
+            <i class="fa-regular fa-images"></i>
+          </div>
+          <h2 class="card-title">Extra Test Images</h2>
+        </div>
+
+        <div class="file-row file-blue"
+             *ngFor="let img of caseData.files.extraImages; let i = index">
+          <div class="file-icon blue-icon">
+            <i class="fa-regular fa-image"></i>
+          </div>
+          <span class="file-name">Image / Image_{{ i + 1 }}.png</span>
+          <button class="dl-btn"
+            (click)="downloadImage(img, 'Image-' + (i+1) + '-' + caseId + '.png')"
+            title="Download Image {{ i + 1 }}">
+            <i class="fa-solid fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

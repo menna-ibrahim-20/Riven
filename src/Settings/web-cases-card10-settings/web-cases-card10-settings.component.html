@@ -1,0 +1,37 @@
+<section class="settings-card">
+  <div class="card-header">
+    <div class="header-inner">
+      <div class="icon-wrap">
+        <i class="fa-solid fa-globe header-icon"></i>
+      </div>
+      <h2 class="card-title">Language Settings</h2>
+    </div>
+  </div>
+  <div class="divider"></div>
+
+  <div class="custom-select-wrap">
+
+    <!-- Trigger -->
+    <div class="custom-select-trigger" (click)="toggleDropdown()">
+      <i class="fa-solid fa-globe input-icon"></i>
+      <span class="selected-label">{{ getSelectedLabel() }}</span>
+      <i class="fa-solid fa-chevron-down chevron-icon"
+         [class.rotated]="isOpen"></i>
+    </div>
+
+    <!-- Dropdown -->
+    <ul class="custom-dropdown" *ngIf="isOpen">
+      <li
+        *ngFor="let lang of languages"
+        class="dropdown-item"
+        [class.active]="selectedLanguage === lang.code"
+        (click)="selectLanguage(lang.code)"
+      >
+        <span class="lang-label">{{ lang.label }}</span>
+        <i class="fa-solid fa-check check-icon"
+           *ngIf="selectedLanguage === lang.code"></i>
+      </li>
+    </ul>
+
+  </div>
+</section>

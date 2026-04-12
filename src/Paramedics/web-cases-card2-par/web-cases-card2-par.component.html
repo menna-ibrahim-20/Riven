@@ -1,0 +1,20 @@
+<div class="web-cases-card">
+  <div class="frame-parent">
+    <div class="search-bar-wrapper">
+      <div class="search-bar">
+        <img class="search-icon" alt="" src="/assets/Search.svg" />
+        <input
+          class="search-paramedics"
+          placeholder="Search paramedics..."
+          type="text"
+          [value]="searchQuery"
+          (input)="searchChange.emit($any($event.target).value)"
+        />
+      </div>
+    </div>
+    <button class="cta-w-button" (click)="addClick.emit()">
+      <img class="add-icon" alt="" src="/assets/Add.svg" />
+      <div class="add-paramedic">Add Paramedic</div>
+    </button>
+  </div>
+</div>

@@ -1,0 +1,9 @@
+<button
+  class="main"
+  [attr.data-property1]="property1"
+  [ngStyle]="callStyle"
+  (click)="onCallAmbulance()"
+>
+  <app-callcon [property1]="property11" class="call-icon"></app-callcon>
+  <div class="update-readiness">{{text}}</div>
+</button>

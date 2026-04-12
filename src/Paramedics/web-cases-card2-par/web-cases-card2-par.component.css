@@ -1,0 +1,112 @@
+.web-cases-card {
+  align-self: stretch;
+  border-radius: 16px;
+  background: #fafafa;
+  border: 1px solid #d6dadd;
+  padding: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+.frame-parent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-bar-wrapper {
+  flex: 1;
+  height: 48px;
+  border-radius: 999px;
+  background: #fafafa;
+  border: 1px solid #d6dadd;
+  overflow: hidden;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  min-width: 0;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+}
+
+.search-icon { width: 24px; flex-shrink: 0; }
+
+.search-paramedics {
+  flex: 1;
+  border: 0;
+  outline: 0;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  background: transparent;
+  color: #1a1d1f;
+  padding: 0;
+  min-width: 0;
+}
+
+.search-paramedics::placeholder { color: #c0c5c7; }
+
+.cta-w-button {
+  cursor: pointer;
+  border: 0;
+  padding: 12px 32px;
+  background: #08848d;
+  height: 48px;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.2s;
+}
+
+.cta-w-button:hover { background: #2eabb3; }
+
+.add-icon { width: 24px; }
+
+.add-paramedic {
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  color: #fafafa;
+  white-space: nowrap;
+}
+
+@media (max-width: 750px) {
+  .web-cases-card {
+    padding: 12px;
+  }
+
+  .frame-parent {
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+  }
+
+  .search-bar-wrapper {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .cta-w-button {
+    width: auto;
+    flex-shrink: 0;
+    padding: 0 16px;
+    height: 38px;
+    justify-content: center;
+  }
+
+  .add-icon {
+    display: none;           
+  }
+
+  .add-paramedic {
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    width: 100%;
+  }
+}

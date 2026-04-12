@@ -1,0 +1,222 @@
+<div class="profile-page">
+
+  <!-- Back Button -->
+  <button class="back-btn" (click)="goBack()">
+    <i class="fa-solid fa-arrow-left"></i>
+    Back to Paramedics
+  </button>
+
+  <!-- Loading -->
+  <div class="loading-state" *ngIf="isLoading">
+    <div class="spinner-ring"></div>
+    <span>Loading profile…</span>
+  </div>
+
+  <!-- Error -->
+  <div class="error-banner" *ngIf="hasError && !isLoading">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    Failed to load — showing sample data.
+    <button class="retry-link" (click)="loadProfile()">Retry</button>
+  </div>
+
+  <!-- Profile Card -->
+  <div class="profile-card" *ngIf="!isLoading">
+
+    <!-- Header -->
+    <header class="card-header">
+      <div class="header-left">
+        <div class="hdr-icon-wrap">
+          <i class="fa-solid fa-user hdr-icon"></i>
+        </div>
+        <h2 class="hdr-title">Paramedic Profile</h2>
+      </div>
+      <button class="close-btn" (click)="goBack()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </header>
+
+    <div class="divider"></div>
+
+    <!-- Identity Section -->
+    <section class="identity-section">
+
+      <!-- Avatar -->
+      <div class="avatar-wrapper">
+        <div class="avatar-circle">
+          <i class="fa-solid fa-user-nurse avatar-icon" *ngIf="!paramedic.Paramedicimg"></i>
+          <img
+            *ngIf="paramedic.Paramedicimg"
+            [src]="paramedic.Paramedicimg"
+            alt="Paramedic photo"
+            class="avatar-img"
+            (error)="onImgError($event)"
+          />
+        </div>
+      </div>
+
+      <div class="identity-text">
+        <span class="identity-role">Paramedic,</span>
+        <h1 class="identity-name">{{ paramedic.name }}</h1>
+        <p class="identity-contact">
+          <i class="fa-regular fa-envelope"></i> {{ paramedic.email }}
+          &nbsp;&nbsp;
+          <i class="fa-solid fa-phone"></i> {{ paramedic.phone }}
+          &nbsp;&nbsp;
+          <i class="fa-solid fa-truck-medical"></i> {{ paramedic.ambulance }}
+        </p>
+      </div>
+
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Time Filter -->
+    <app-time-casesprofile
+      [activeTab]="activeTab"
+      (tabChange)="setTab($event)">
+    </app-time-casesprofile>
+
+    <!-- KPI Cards -->
+    <div class="kpi-grid">
+      <app-card-m
+        [title]="'Total Cases'"
+        [num]="stats.totalCases.toString()"
+        [iconClass]="'fa-regular fa-folder'"
+        [secText]="stats.casesTrend"
+        [extra]="true"
+        [showUpIcon]="true"
+        [dividerColor]="'#0aa3b2'">
+      </app-card-m>
+
+      <app-card-m
+        [title]="'Avg Response'"
+        [num]="stats.avgResponse"
+        [iconClass]="'fa-regular fa-clock'"
+        [secText]="stats.responseTrend"
+        [extra]="true"
+        [showUpIcon]="true"
+        [dividerColor]="'#2f80ed'"
+        [vsLastPeriodColor]="'#0fa573'">
+      </app-card-m>
+
+      <app-card-m
+        [title]="'Handovers'"
+        [num]="stats.handovers.toString()"
+        [iconClass]="'fa-solid fa-house-medical'"
+        [secText]="stats.handoverSub"
+        [extra]="true"
+        [showUpIcon]="false"
+        [dividerColor]="'#d64545'"
+        [vsLastPeriodColor]="'#4a4f52'">
+      </app-card-m>
+
+      <app-card-m
+        [title]="'Completion Rate'"
+        [num]="stats.completionRate"
+        [iconClass]="'fa-solid fa-circle-check'"
+        [secText]="stats.completionSub"
+        [extra]="true"
+        [showUpIcon]="false"
+        [dividerColor]="'#0fa573'"
+        [vsLastPeriodColor]="'#4a4f52'">
+      </app-card-m>
+    </div>
+
+    <!-- Charts Row -->
+    <div class="charts-row">
+      <div class="chart-card">
+        <div class="chart-header-row">
+          <div class="chart-icon-wrap" style="background:#fdeaea">
+            <i class="fa-solid fa-heart-pulse" style="color:#d64545"></i>
+          </div>
+          <span class="chart-title">Cases Over Time</span>
+        </div>
+        <div class="chart-area">
+          <canvas #casesChart></canvas>
+        </div>
+      </div>
+
+      <div class="chart-card">
+        <div class="chart-header-row">
+          <div class="chart-icon-wrap" style="background:#fff7e6">
+            <i class="fa-regular fa-clock" style="color:#d4860a"></i>
+          </div>
+          <span class="chart-title">Response Time Trend</span>
+        </div>
+        <div class="chart-area">
+          <canvas #responseChart></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case Type Breakdown -->
+    <div class="breakdown-card">
+      <div class="chart-header-row">
+        <div class="chart-icon-wrap" style="background:#e6f7f2">
+          <i class="fa-regular fa-file-lines" style="color:#0fa573"></i>
+        </div>
+        <span class="chart-title">Case Type Breakdown</span>
+      </div>
+      <div class="breakdown-body">
+        <div class="donut-area">
+          <canvas #donutChart></canvas>
+        </div>
+        <div class="breakdown-legend">
+          <div class="legend-row" *ngFor="let item of caseTypes">
+            <span class="legend-dot" [style.background]="item.color"></span>
+            <span class="legend-label">{{ item.label }}</span>
+            <span class="legend-pct">{{ item.pct }}%</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <!-- Action Footer -->
+    <footer class="action-footer">
+      <app-direction1profile
+        [text]="'Edit Paramedic Profile'"
+        [property1]="'Variant2'"
+        (editClick)="onEdit()">
+      </app-direction1profile>
+
+      <app-delete
+        [text]="'Delete Paramedic'"
+        [property1]="'Default'"
+        (deleteClick)="showDeleteModal = true">
+      </app-delete>
+    </footer>
+
+  </div>
+
+  <!-- Delete Modal -->
+  <div class="modal-overlay" *ngIf="showDeleteModal" (click)="showDeleteModal = false">
+    <div class="modal-box" (click)="$event.stopPropagation()">
+      <div class="modal-icon-wrap">
+        <i class="fa-solid fa-triangle-exclamation modal-alert-icon"></i>
+      </div>
+      <h3 class="modal-title">Delete Paramedic?</h3>
+      <p class="modal-desc">
+        This cannot be undone. Remove <strong>{{ paramedic.name }}</strong>?
+      </p>
+      <div class="modal-actions">
+        <button class="modal-cancel" (click)="showDeleteModal = false">Cancel</button>
+        <button class="modal-confirm" (click)="confirmDelete()" [disabled]="isDeleting">
+          <span *ngIf="isDeleting" class="btn-spinner"></span>
+          {{ isDeleting ? 'Deleting…' : 'Yes, Delete' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal -->
+  <app-web-cases-card-add
+    *ngIf="showEditModal"
+    [editMode]="true"
+    [initialData]="paramedic"
+    (close)="showEditModal = false"
+    (paramedicAdded)="onParamedicUpdated($event)">
+  </app-web-cases-card-add>
+
+</div>

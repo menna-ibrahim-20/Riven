@@ -1,0 +1,22 @@
+<section class="w-input-fields-icon2">
+  <h3 class="emergency-type">Emergency Type</h3>
+  <div class="w-input-fields-icon-inner">
+    <div class="frame-group">
+      <div class="paramedic-parent">
+        <i class="fa-solid fa-truck-medical paramedic-icon-fa"></i>
+        <select class="select-emergency-type" [(ngModel)]="selectedType">
+          <option value="" disabled>Select Emergency Type</option>
+          <option value="cardiac">Cardiac Arrest</option>
+          <option value="stroke">Stroke</option>
+          <option value="trauma">Major Trauma</option>
+          <option value="respiratory">Respiratory Failure</option>
+          <option value="mass_casualty">Mass Casualty</option>
+          <option value="fire">Fire / Evacuation</option>
+          <option value="hazmat">Hazmat / Chemical</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
+      <i class="fa-solid fa-chevron-down paramedic-icon-fa"></i>
+    </div>
+  </div>
+</section>

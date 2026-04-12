@@ -1,0 +1,17 @@
+<section class="overview-section">
+  <h1 class="overview-title">Archive overview</h1>
+  <div class="cards-grid">
+    <app-webcard
+      *ngFor="let item of webCardItems"
+      [separatorA]="item.separatorA"
+      [text]="item.text"
+      [num]="item.num"
+      [iconClass]="item.iconClass"
+      [iconBg]="item.iconBg"
+      [iconColor]="item.iconColor"
+      [separatorAColor]="item.separatorAColor"
+      [casesThisWeekColor]="item.casesThisWeekColor"
+    ></app-webcard>
+  </div>
+  <app-emergency-fab></app-emergency-fab>
+</section>

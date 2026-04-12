@@ -1,0 +1,12 @@
+<div class="web-card" [attr.data-property1]="property1">
+  <div class="home-direction-container">
+    <div class="indicators">
+      <div class="home-direction" [style.background-color]="iconBgColor">
+        <i class="fa-solid nav-icon" [ngClass]="icon" [style.color]="iconColor"></i>
+      </div>
+      <div class="badge" [style.color]="badgeColor">{{ badge }}</div>
+    </div>
+    <h2 class="hospital-overview" [style.color]="numColor || 'var(--color-gray-200)'">{{ num }}</h2>
+    <div class="cases-this-week">{{ text }}</div>
+  </div>
+</div>

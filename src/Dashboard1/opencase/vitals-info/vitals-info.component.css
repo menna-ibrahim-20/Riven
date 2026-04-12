@@ -1,0 +1,5 @@
+.vitals-info {
+  width: var(--width-24);
+  position: relative;
+  max-height: 100%;
+}

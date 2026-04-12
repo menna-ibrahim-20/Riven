@@ -1,0 +1,12 @@
+
+ <a  class="nav-item3"
+  routerLink="/dashboard/paramedic"
+  routerLinkActive="selected"
+  #rla="routerLinkActive"
+>
+
+  <i class="fa-solid fa-truck-medical nav-icon"></i>
+  <span class="nav-text" *ngIf="rla.isActive">{{ text }}</span>
+
+</a>
+

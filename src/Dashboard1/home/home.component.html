@@ -1,0 +1,169 @@
+
+<div class="root">
+<app-frame-component></app-frame-component>
+
+<!-- Loading -->
+<div *ngIf="isLoading" class="state-banner loading mx-3">
+  <i class="fa-solid fa-circle-notch fa-spin"></i>
+  <span>Loading cases…</span>
+</div>
+
+<!-- Error -->
+<div *ngIf="hasError && !isLoading" class="state-banner error mx-3">
+  <i class="fa-solid fa-triangle-exclamation"></i>
+  <span>Failed to load data. Retrying…</span>
+</div>
+
+<!-- INCOMING CASES -->
+<main class="incoming-cases-parent m-3">
+  <h2 class="incoming-cases">Incoming Cases</h2>
+  <div class="web-cases-card-parent">
+
+    <div *ngIf="!isLoading && incomingCases.length === 0" class="empty-state">
+      <i class="fa-regular fa-folder-open"></i>
+      <p>No incoming cases right now</p>
+    </div>
+
+    <section
+      class="web-cases-card3"
+      *ngFor="let case of incomingCases; let i = index; trackBy: trackById"
+      [style.animation-delay]="i * 70 + 'ms'"
+    >
+      <div class="frame-parent5">
+        <div class="frame-parent6">
+          <div class="home-wrapper">
+            <img class="home-icon2" alt="" src="/assets/img/Home.png" />
+          </div>
+          <div class="s-c-indicator">
+            <h2 class="sc-2024-0013">{{ case.id }}</h2>
+            <div class="patient-67yo-male3">Patient: {{ case.patient }}</div>
+          </div>
+          <div class="severity-indicator" [ngClass]="getSeverityClass(case.severity)">
+            <div class="severe3">{{ case.severity }}</div>
+          </div>
+        </div>
+        <div class="direction-time">
+          <div class="direction-indicator">
+            <img class="direction-icon" alt="" src="/assets/img/Frame 364.png" />
+            <h3 class="min">{{ case.eta }}</h3>
+          </div>
+          <div class="eta">ETA</div>
+        </div>
+      </div>
+
+      <div class="web-cases-card-child3"></div>
+
+      <div class="a-i-prediction-display">
+        <div class="a-i-prediction-value">
+          <div class="ai-prediction3">AI Prediction</div>
+          <div class="ischemic-large3">{{ case.aiPrediction }}</div>
+        </div>
+        <div class="nihss-display">
+          <div class="nihss3">NIHSS</div>
+          <div class="severe-stroke3">{{ case.nihss }}</div>
+        </div>
+        <div class="onset-details">
+          <div class="onset">Onset</div>
+          <div class="min-ago3">{{ case.onset }}</div>
+        </div>
+        <div class="paramedic-details">
+          <div class="paramedic3">Paramedic</div>
+          <div class="davis-adam3">{{ case.paramedic }}</div>
+        </div>
+      </div>
+
+      <div class="web-cases-card-child4"></div>
+
+      <div class="update-time-cta">
+        <div class="time-update">
+          <div class="time-icon"><i class="fa-regular fa-clock"></i></div>
+          <div class="last-updated-23">Last updated {{ case.updatedAt }}</div>
+        </div>
+       <app-web-card-cat
+          [property1]="'Default'"
+          [text]="'Open Case'"
+          (clicked)="openCase(case.id)"
+       ></app-web-card-cat>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<!-- HANDOVER COMPLETE CASES -->
+<section class="incoming-cases-parent m-3">
+  <h2 class="incoming-cases mx-3">Handover Complete Cases</h2>
+  <div class="web-cases-card-parent">
+
+    <div *ngIf="!isLoading && handoverCases.length === 0" class="empty-state">
+      <i class="fa-regular fa-folder-open"></i>
+      <p>No handover cases</p>
+    </div>
+
+    <section
+      class="web-cases-card"
+      *ngFor="let case of handoverCases; let i = index; trackBy: trackById"
+      [style.animation-delay]="i * 70 + 'ms'"
+    >
+      <div class="frame-parent">
+        <div class="frame-group">
+          <div class="bed-wrapper">
+            <img class="bed-icon" alt="" src="/assets/img/Frame 364 (3).png" />
+          </div>
+          <div class="sc-2024-001-parent">
+            <h2 class="sc-2024-001">{{ case.id }}</h2>
+            <div class="patient-67yo-male">Patient: {{ case.patient }}</div>
+          </div>
+          <button class="arrival-time" [ngClass]="getSeverityClass(case.severity)">
+            <div class="severe">{{ case.severity }}</div>
+          </button>
+          <button class="arrival-time2">
+            <div class="arrived">Arrived</div>
+          </button>
+        </div>
+        <div class="time-in-hospital-parent">
+          <div class="time-in-hospital">Time in Hospital</div>
+          <div class="min-ago">{{ case.timeInHospital }}</div>
+        </div>
+      </div>
+
+      <div class="web-cases-card-child"></div>
+
+      <div class="frame-container">
+        <div class="ai-prediction-parent">
+          <div class="time-in-hospital">AI Prediction</div>
+          <div class="min-ago">{{ case.aiPrediction }}</div>
+        </div>
+        <div class="ai-prediction-parent">
+          <div class="time-in-hospital">NIHSS</div>
+          <div class="min-ago">{{ case.nihss }}</div>
+        </div>
+        <div class="ai-prediction-parent">
+          <div class="time-in-hospital">Physician</div>
+          <div class="min-ago">{{ case.physician }}</div>
+        </div>
+        <div class="ai-prediction-parent">
+          <div class="time-in-hospital">Paramedic</div>
+          <div class="min-ago">{{ case.paramedic }}</div>
+        </div>
+      </div>
+
+      <div class="web-cases-card-child"></div>
+
+      <div class="frame-div">
+        <div class="time-parent">
+          <div class="time-icon"><i class="fa-regular fa-clock"></i></div>
+          <div class="last-updated-2">Last updated {{ case.updatedAt }}</div>
+        </div>
+       <app-web-card-cat
+           [property1]="'Default'"
+           [text]="'View Details'"
+           (clicked)="viewDetails(case.id)"
+        ></app-web-card-cat>
+      </div>
+    </section>
+
+<app-emergency-fab></app-emergency-fab>
+  </div>
+</section>
+</div>

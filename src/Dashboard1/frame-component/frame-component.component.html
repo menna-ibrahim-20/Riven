@@ -1,0 +1,47 @@
+<div class="frame-wrapper">
+  <h2 class="hospital-overview-title">Hospital Overview</h2>
+  <div class="web-cards-parent">
+
+    <web-card
+      [icon]="'fa-heart-pulse'"
+      [iconBgColor]="'#EFF6FF'"
+      [iconColor]="'#3B82F6'"
+      [badge]="'+12%'"
+      [badgeColor]="'#22c55e'"
+      [num]="stats.casesThisWeek"
+      [text]="'Cases This Week'">
+    </web-card>
+
+    <web-card
+      [icon]="'fa-location-arrow'"
+      [iconBgColor]="'#FEF2F2'"
+      [iconColor]="'#EF4444'"
+      [badge]="'Live'"
+      [badgeColor]="'#EF4444'"
+      [num]="stats.enRoute"
+      [numColor]="'#EF4444'"
+      [text]="'En Route'">
+    </web-card>
+
+    <web-card
+      [icon]="'fa-earth-americas'"
+      [iconBgColor]="'#F0FDF4'"
+      [iconColor]="'#22c55e'"
+      [badge]="'Active Paramedics'"
+      [badgeColor]="'#6B7280'"
+      [num]="stats.activeParamedics"
+      [text]="'Online now'">
+    </web-card>
+
+    <web-card
+      [icon]="'fa-bed'"
+      [iconBgColor]="'#F0FDFA'"
+      [iconColor]="'#14B8A6'"
+      [badge]="'ER Ready'"
+      [badgeColor]="'#6B7280'"
+      [num]="stats.availableBeds"
+      [text]="'Available Stroke Beds'">
+    </web-card>
+
+  </div>
+</div>

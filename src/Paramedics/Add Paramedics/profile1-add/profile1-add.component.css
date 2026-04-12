@@ -1,0 +1,30 @@
+.cta-w-button {
+  cursor: pointer;
+  border: 0;
+  padding: 15px 126px;
+  background-color: #08848d;
+  align-self: stretch;
+  height: 56px;
+  border-radius: 999px;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  gap: 10px;
+}
+.profile-icon2 {
+  height: 24px;
+  width: 24px;
+  position: relative;
+}
+.update-readiness {
+  position: relative;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  font-family: Inter;
+  color: #fafafa;
+  text-align: center;
+}

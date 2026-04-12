@@ -1,0 +1,26 @@
+<section
+  class="w-input-fields-icon"
+  [attr.data-property1]="property1"
+  [ngStyle]="wInputFieldsIconStyle"
+>
+  <div class="patient-name-optional">{{tittle}}</div>
+  <div class="w-input-fields-icon-inner">
+    <div class="frame-group" [ngStyle]="frameDivStyle">
+      <div class="hopital-parent">
+        <img
+          class="hopital-icon"
+          alt=""
+          [src]="hopital"
+          [ngStyle]="hopitalIconStyle"
+        />
+        <input
+          class="enter-patient-name"
+          placeholder="City General Hospital"
+          type="text"
+          [ngStyle]="enterPatientNameStyle"
+        />
+      </div>
+      <app-download-icon [download]="downloadUrl"></app-download-icon>
+    </div>
+  </div>
+</section>

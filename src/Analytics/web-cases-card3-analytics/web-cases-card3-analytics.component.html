@@ -1,0 +1,64 @@
+<section class="filter-bar">
+  <div class="filter-fields">
+
+   
+ <div class="filter-select-wrap"
+     [class.filter-active]="reportType"
+     (click)="reportTypeSelect.click()">
+  <i class="fa-solid fa-chart-bar filter-icon"></i>
+  <span class="select-label">
+    {{ reportType ? getLabel(reportType) : 'Report Type' }}
+  </span>
+  <select #reportTypeSelect
+          class="filter-select"
+          [ngModel]="reportType"
+          (ngModelChange)="onReportTypeChange($event)"
+          (click)="$event.stopPropagation()">
+    <option value="" disabled>Report Type</option>
+    <option value="weekly">Weekly</option>
+    <option value="monthly">Monthly</option>
+    <option value="quarterly">Quarterly</option>
+  </select>
+  <i class="fa-solid fa-chevron-down select-arrow"></i>
+</div>
+
+    <!-- From Date -->
+    <div class="filter-date-wrap"
+         [class.filter-active]="dateFrom"
+         (click)="dateFromInput.showPicker()">
+      <i class="fa-regular fa-calendar filter-icon" style="cursor:pointer"></i>
+      <span class="date-label">From</span>
+      <input #dateFromInput
+             type="date"
+             class="filter-date"
+             [ngModel]="dateFrom"
+             (ngModelChange)="onDateFromChange($event)"
+             (click)="$event.stopPropagation()" />
+    </div>
+
+    <!-- To Date -->
+    <div class="filter-date-wrap"
+         [class.filter-active]="dateTo"
+         (click)="dateToInput.showPicker()">
+      <i class="fa-regular fa-calendar filter-icon" style="cursor:pointer"></i>
+      <span class="date-label">To</span>
+      <input #dateToInput
+             type="date"
+             class="filter-date"
+             [ngModel]="dateTo"
+             (ngModelChange)="onDateToChange($event)"
+             (click)="$event.stopPropagation()" />
+    </div>
+
+  </div>
+
+  <button class="btn-generate" [disabled]="isLoading" (click)="generate.emit()">
+    <i class="fa-solid fa-file-pdf" *ngIf="!isLoading"></i>
+    <i class="fa-solid fa-spinner fa-spin" *ngIf="isLoading"></i>
+    <span>{{ isLoading ? 'Loading...' : 'Generate PDF' }}</span>
+  </button>
+
+  <p class="error-msg" *ngIf="errorMsg">
+    <i class="fa-solid fa-triangle-exclamation"></i> {{ errorMsg }}
+  </p>
+</section>

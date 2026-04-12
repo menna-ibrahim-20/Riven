@@ -1,0 +1,116 @@
+.settings-root {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  box-sizing: border-box;
+  font-family: Inter, sans-serif;
+}
+
+/* ── Shared Card Style ── */
+.settings-card {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #fafafa;
+  border: 1px solid #d6dadd;
+  border-radius: 32px;
+  padding: 22px 23px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.12);
+}
+
+.card-header { display: flex; align-items: center; }
+.header-inner { display: flex; align-items: center; gap: 16px; }
+
+.icon-wrap {
+  width: 56px; height: 56px;
+  border-radius: 999px;
+  background: #e6fcfd;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.header-icon { font-size: 22px; color: #0aa3b2; }
+.card-title { margin: 0; font-size: 28px; font-weight: 600; color: #1a1d1f; line-height: 36px; }
+
+.divider { height: 0.5px; background: #c0c5c7; border-radius: 999px; width: 100%; }
+
+/* ── Fields ── */
+.field-group { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.field-label { font-size: 16px; font-weight: 600; color: #1a1d1f; }
+.fields-row { display: flex; gap: 24px; align-items: flex-start; }
+
+.input-wrap {
+  display: flex; align-items: center; gap: 12px;
+  background: #fafafa; border: 1px solid #d6dadd;
+  border-radius: 999px; padding: 14px 16px;
+  transition: border-color 0.2s;
+}
+.input-wrap:focus-within { border-color: #0aa3b2; }
+.input-error { border-color: #d64545 !important; }
+
+.input-icon { font-size: 16px; color: #c0c5c7; flex-shrink: 0; }
+
+.field-input {
+  flex: 1; border: none; background: transparent;
+  outline: none; font-family: Inter, sans-serif;
+  font-size: 16px; color: #1a1d1f; min-width: 0;
+}
+.field-input::placeholder { color: #c0c5c7; }
+
+.eye-btn {
+  background: none; border: none; cursor: pointer;
+  color: #9ca3af; padding: 2px 4px;
+  display: flex; align-items: center;
+  font-size: 15px; flex-shrink: 0;
+}
+.eye-btn:hover { color: #0aa3b2; }
+
+.error-text { font-size: 12px; color: #d64545; }
+
+/* ── Save Button ── */
+.save-btn {
+  width: 100%; height: 56px;
+  border-radius: 999px; border: none;
+  background: #2f80ed; color: #fafafa;
+  font-size: 16px; font-weight: 600;
+  font-family: Inter, sans-serif;
+  cursor: pointer;
+  display: flex; align-items: center;
+  justify-content: center; gap: 10px;
+  transition: background 0.2s;
+}
+.save-btn:hover:not(:disabled) { background: #1a6fd4; }
+.save-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+.spinner {
+  width: 18px; height: 18px;
+  border: 2px solid rgba(255,255,255,0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.success-msg {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 14px; color: #0fa573;
+  background: #e6f7f2; border: 1px solid #89d9c1;
+  border-radius: 12px; padding: 10px 16px;
+}
+.error-banner {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 13px; color: #791f1f;
+  background: #fcebeb; border: 1px solid #f09595;
+  border-radius: 12px; padding: 10px 14px;
+}
+
+@media (max-width: 768px) {
+  .settings-root { padding: 20px 16px; gap: 24px; }
+  .settings-card { padding: 16px; border-radius: 20px; }
+  .fields-row { flex-direction: column; }
+  .card-title { font-size: 22px; }
+}

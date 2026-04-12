@@ -1,0 +1,26 @@
+.severity-level-parent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  font-size: 24px;
+  color: #1a1d1f;
+  font-family: Inter;
+}
+.severity-level3 {
+  margin: 0;
+  align-self: stretch;
+  position: relative;
+  font-size: inherit;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: inherit;
+}
+@media screen and (max-width: 450px) {
+  .severity-level3 {
+    font-size: 19px;
+    line-height: 26px;
+  }
+}

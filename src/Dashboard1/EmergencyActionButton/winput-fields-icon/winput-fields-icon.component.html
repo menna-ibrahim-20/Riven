@@ -1,0 +1,24 @@
+<footer class="w-input-fields-icon4">
+  <div class="selection-header">
+    <h3 class="select-paramedic">Select Paramedic</h3>
+    <h3 class="select-all" (click)="toggleSelectAll()">Select All</h3>
+  </div>
+
+  <app-paramedic-column
+    [profile]="'/assets/Profile.svg'"
+    [isSelected]="selectedStates[0]"
+    (selectedChange)="onParamedicChange(0, $event)">
+  </app-paramedic-column>
+
+  <app-paramedic-column
+    [profile]="'/assets/Profile.svg'"
+    [isSelected]="selectedStates[1]"
+    (selectedChange)="onParamedicChange(1, $event)">
+  </app-paramedic-column>
+
+  <app-paramedic-column
+    [profile]="'/assets/Profile.svg'"
+    [isSelected]="selectedStates[2]"
+    (selectedChange)="onParamedicChange(2, $event)">
+  </app-paramedic-column>
+</footer>

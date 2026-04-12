@@ -1,0 +1,80 @@
+.hospital-details {
+  align-self: stretch;
+  border-radius: var(--br-24);
+  overflow: hidden;
+  position: relative;
+  height: 320px;
+  background-color: #e8f4f8;
+  font-family: var(--font-inter);
+}
+
+.map-iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: 0;
+}
+
+.selected-hospital-wrapper {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  white-space: nowrap;
+}
+
+.selected-hospital {
+  box-shadow: var(--Shadows-Component-elevation-cards-list-items);
+  border-radius: var(--br-32);
+  background-color: var(--color-gray-100);
+  padding: var(--padding-16) var(--padding-24);
+}
+
+.arrival-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--gap-8);
+}
+
+.arrival-time-data {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-7);
+}
+
+.arrival-icon {
+  font-size: 20px;
+  color: #6b7280;
+}
+
+.estimated-arrival {
+  line-height: var(--lh-26);
+  font-size: var(--fs-18);
+  color: var(--color-darkslategray);
+}
+
+.min {
+  align-self: stretch;
+  font-size: var(--fs-40);
+  line-height: var(--lh-48);
+  color: var(--Primary-primary-main-500);
+  text-align: center;
+}
+
+.location-pin {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.pin-icon {
+  font-size: 52px;
+  color: #E53935;
+}

@@ -1,0 +1,40 @@
+.time-cases {
+  align-self: stretch;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  background-color: #fafafa;
+  border: 1px solid var(--Primary-primary-main-500);
+  box-sizing: border-box;
+  padding: 4px;
+  gap: 4px;
+  font-family: Inter;
+}
+
+.time-selection {
+  flex: 1;
+  border-radius: 999px;
+  background-color: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 16px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: Inter, sans-serif;
+  color: var(--Primary-primary-main-500);
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  white-space: nowrap;
+}
+
+.time-selection.active {
+  background-color: var(--Primary-primary-main-500);
+  color: #ffffff;
+}
+
+.time-selection:hover:not(.active) {
+  background-color: #e6fcfd;
+}

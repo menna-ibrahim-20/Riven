@@ -1,0 +1,50 @@
+<div class="root">
+
+  <div class="error-banner" *ngIf="hasError">
+    ⚠️ Failed to load data — showing sample data.
+    <button class="retry-btn" (click)="loadData()">Retry</button>
+  </div>
+
+  <app-frame-par
+    [hospitalOverview]="'Paramedic Team Overview'"
+    [isLoading]="isLoading"
+    [totalParamedics]="stats.total"
+    [activeParamedics]="stats.active"
+    [avgTime]="stats.avgTime"
+    [casesThisWeek]="stats.casesThisWeek">
+  </app-frame-par>
+
+  <app-web-cases-card2-par
+    [searchQuery]="searchQuery"
+    (searchChange)="onSearch($event)"
+    (addClick)="onAddParamedic()">
+  </app-web-cases-card2-par>
+
+  <main class="paramedic-team-parent">
+    <h2 class="paramedic-team">Paramedic Team</h2>
+
+    <div class="loading-state" *ngIf="isLoading">
+      <span class="spinner"></span> Loading paramedics...
+    </div>
+
+    <div class="empty-state" *ngIf="!isLoading && filteredParamedics.length === 0">
+      No paramedics found.
+    </div>
+
+    <app-web-cases-card1-par
+      *ngIf="!isLoading && filteredParamedics.length > 0"
+      [paramedics]="filteredParamedics"
+      (viewParamedic)="onViewParamedic($event)">
+    </app-web-cases-card1-par>
+  </main>
+
+  <app-emergency-fab></app-emergency-fab>
+
+  <!-- ✅ Add Paramedic Modal -->
+  <app-web-cases-card-add
+    *ngIf="showAddModal"
+    (close)="showAddModal = false"
+    (paramedicAdded)="onParamedicAdded($event)">
+  </app-web-cases-card-add>
+
+</div>

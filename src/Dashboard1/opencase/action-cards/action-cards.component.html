@@ -1,0 +1,93 @@
+<div class="action-cards">
+  <section class="web-cases-card6">
+    <div class="action-info-parent">
+      <div class="action-info"><app-paramedic-icon> </app-paramedic-icon></div>
+      <h2 class="case-actions">Case Actions</h2>
+    </div>
+    <div class="location-icon" (click)="onDirectionClick()">
+      <img
+        class="openmojilocation-indicator-re-icon"
+        loading="lazy"
+        alt=""
+        src="/assets/openmoji-location-indicator-red.svg"
+      />
+    </div>
+    <div class="action-buttons">
+      <app-call
+        [property1]="'Variant2'"
+        [text]="'View Live Tracking'"
+        (onFrameContainerClick)="onDirectionClick()"
+        [property11]="'Variant2'"
+      >
+      </app-call>
+      <app-call
+        [property1]="'Default'"
+        [text]="'Call Ambulance'"
+        [property11]="'Default'"
+      >
+      </app-call>
+    </div>
+  </section>
+  <section class="web-cases-card7">
+    <div class="action-info-parent">
+      <div class="action-info"><app-hopital-icon> </app-hopital-icon></div>
+      <h2 class="case-actions">Hospital Readiness</h2>
+    </div>
+    <div class="additional-detail"></div>
+    <div class="update-preparation-parent">
+      <app-update-preparation
+        [property1]="'Default'"
+        [text]="'• Patient Room Ready'"
+      >
+      </app-update-preparation>
+      <div class="additional-detail"></div>
+      <app-update-preparation
+        [property1]="'Default'"
+        [text]="'• Stroke Team Notified'"
+      >
+      </app-update-preparation>
+      <div class="additional-detail"></div>
+      <app-update-preparation
+        [property1]="'Default'"
+        [text]="'• Neurologist On Standby'"
+      >
+      </app-update-preparation>
+    </div>
+    <app-call
+      [property1]="'Default'"
+      [text]="'Update Readiness'"
+      [property11]="'Default'"
+    >
+    </app-call>
+  </section>
+  <section class="web-cases-card7">
+    <div class="action-info-parent">
+      <div class="action-info"><app-vitals-info> </app-vitals-info></div>
+      <h2 class="case-actions">Extra Test Images</h2>
+    </div>
+    <div class="additional-detail"></div>
+    <div class="frame-container">
+      <div class="frame-parent2">
+        <div class="image-wrapper2"><app-image-icon> </app-image-icon></div>
+        <div class="image-labels-pair">
+          <div class="image-image-1png">Image / Image_1.png</div>
+          <app-download-icon [download]="'/assets/Download.svg'"> </app-download-icon>
+        </div>
+      </div>
+      <div class="frame-parent2">
+        <div class="image-wrapper2"><app-image-icon> </app-image-icon></div>
+        <div class="image-labels-pair">
+          <div class="image-image-1png">Image / Image_1.png</div>
+          <app-download-icon [download]="'/assets/Download.svg'"> </app-download-icon>
+        </div>
+      </div>
+      <div class="frame-parent2">
+        <div class="image-wrapper2"><app-image-icon> </app-image-icon></div>
+        <div class="image-labels-pair">
+          <div class="image-image-1png">Image / Image_1.png</div>
+          <app-download-icon [download]="'/assets/Download.svg'"> </app-download-icon>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

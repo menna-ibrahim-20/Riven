@@ -1,0 +1,105 @@
+<div class="settings-root">
+
+  <!-- General Settings -->
+  <app-web-cases-card9-settings></app-web-cases-card9-settings>
+
+  <!-- Account Settings — مدمج هنا مباشرة -->
+  <section class="settings-card">
+    <div class="card-header">
+      <div class="header-inner">
+        <div class="icon-wrap">
+          <i class="fa-solid fa-briefcase header-icon"></i>
+        </div>
+        <h2 class="card-title">Account Settings</h2>
+      </div>
+    </div>
+    <div class="divider"></div>
+
+    <!-- Email -->
+    <div class="field-group">
+      <label class="field-label">Email</label>
+      <div class="input-wrap" [class.input-error]="emailTouched && !isValidEmail(accountForm.email)">
+        <i class="fa-regular fa-envelope input-icon"></i>
+        <input
+          type="email"
+          class="field-input"
+          placeholder="emergency.admin@cityambulance.org"
+          [(ngModel)]="accountForm.email"
+          (blur)="emailTouched = true"
+        />
+      </div>
+      <span class="error-text" *ngIf="emailTouched && !isValidEmail(accountForm.email)">
+        ⚠ Please enter a valid email address
+      </span>
+    </div>
+
+    <!-- Password Row -->
+    <div class="fields-row">
+      <div class="field-group">
+        <label class="field-label">Password</label>
+        <div class="input-wrap" [class.input-error]="pwTouched && accountForm.password.length > 0 && accountForm.password.length < 6">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            class="field-input"
+            placeholder="••• ••• ••• •••"
+            [(ngModel)]="accountForm.password"
+            (blur)="pwTouched = true"
+          />
+          <button type="button" class="eye-btn" (click)="showPassword = !showPassword">
+            <i class="fa-regular"
+               [class.fa-eye]="!showPassword"
+               [class.fa-eye-slash]="showPassword"></i>
+          </button>
+        </div>
+        <span class="error-text" *ngIf="pwTouched && accountForm.password.length > 0 && accountForm.password.length < 6">
+          ⚠ Min 6 characters
+        </span>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Confirm Password</label>
+        <div class="input-wrap" [class.input-error]="confirmTouched && accountForm.confirmPassword !== accountForm.password">
+          <i class="fa-solid fa-lock input-icon"></i>
+          <input
+            [type]="showConfirm ? 'text' : 'password'"
+            class="field-input"
+            placeholder="••• ••• ••• •••"
+            [(ngModel)]="accountForm.confirmPassword"
+            (blur)="confirmTouched = true"
+          />
+          <button type="button" class="eye-btn" (click)="showConfirm = !showConfirm">
+            <i class="fa-regular"
+               [class.fa-eye]="!showConfirm"
+               [class.fa-eye-slash]="showConfirm"></i>
+          </button>
+        </div>
+        <span class="error-text" *ngIf="confirmTouched && accountForm.confirmPassword !== accountForm.password">
+          ⚠ Passwords do not match
+        </span>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <button class="save-btn" (click)="saveAccount()" [disabled]="isSavingAccount">
+      <span *ngIf="isSavingAccount" class="spinner"></span>
+      <i *ngIf="!isSavingAccount" class="fa-solid fa-circle-check"></i>
+      <span>{{ isSavingAccount ? 'Saving...' : 'Save Changes' }}</span>
+    </button>
+
+    <div class="success-msg" *ngIf="accountSavedSuccess">
+      <i class="fa-solid fa-circle-check"></i> Account updated successfully!
+    </div>
+    <div class="error-banner" *ngIf="accountSaveError">
+      <i class="fa-solid fa-triangle-exclamation"></i> {{ accountSaveError }}
+    </div>
+  </section>
+
+  <!-- Language Settings -->
+  <app-web-cases-card10-settings></app-web-cases-card10-settings>
+
+  <!-- Log Out -->
+  <app-log-out1 [text]="'Log Out'"></app-log-out1>
+<app-emergency-fab></app-emergency-fab>
+</div>

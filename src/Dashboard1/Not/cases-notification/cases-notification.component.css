@@ -1,0 +1,234 @@
+.cases-notification {
+  align-self: stretch;
+  box-shadow: var(--Shadows-Component-elevation-cards-list-items);
+  border-radius: 999px;
+  background-color: #fafafa;
+  border: 1px solid #d6dadd;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 14px 15px;
+  text-align: left;
+  font-size: 16px;
+  color: #4a4f52;
+  font-family: Inter;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.frame-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+  gap: 23.9px;
+  width: 100%;
+}
+
+.frame-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: #1a1d1f;
+}
+
+.frame-container {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.profile-wrapper {
+  height: 64px;
+  width: 64px;
+  border-radius: 999px;
+  background-color: #d8dce0;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-icon-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.profile-icon-fa {
+  font-size: 26px;
+  color: #8a9099;
+}
+
+.sarah-chen-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 4px;
+}
+
+.sarah-chen {
+  margin: 0;
+  position: relative;
+  font-size: 24px;
+  line-height: 32px;
+  font-weight: 500;
+  font-family: inherit;
+  white-space: nowrap;
+}
+
+.pm-001 {
+  position: relative;
+  font-size: 16px;
+  line-height: 24px;
+  color: #4a4f52;
+}
+
+.frame-item {
+  height: 51px;
+  width: 0.5px;
+  position: relative;
+  border-radius: 999px;
+  background-color: #c0c5c7;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.container-parent {
+  border-radius: 999px;
+  border: 1px solid #89d9c1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 11px;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--Functional-Success-success-500);
+  transition: background-color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.container {
+  height: 8px;
+  width: 8px;
+  position: relative;
+  border-radius: 999px;
+  background-color: var(--Functional-Success-success-500);
+  flex-shrink: 0;
+}
+
+.online {
+  position: relative;
+  line-height: 16px;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.case-a-2847 {
+  position: relative;
+  line-height: 24px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.accepted-wrapper {
+  cursor: pointer;
+  border: 1px solid #89d9c1;
+  padding: 6px 16px;
+  background-color: #e6f7f2;
+  flex: 1;
+  border-radius: 999px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 75px;
+  transition: opacity 0.15s;
+  flex-shrink: 0; 
+  white-space: nowrap;
+}
+
+.accepted-wrapper:hover {
+  opacity: 0.85;
+}
+
+.accepted {
+  position: relative;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  font-family: Inter;
+  color: var(--Functional-Success-success-500);
+  text-align: center;
+}
+
+/* ── Mobile only ── */
+@media screen and (max-width: 600px) {
+  .cases-notification {
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  .frame-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .frame-item {
+    display: none;
+  }
+
+  .accepted-wrapper {
+    width: 100%;
+    flex: unset;
+    padding: 10px 16px;
+  }
+
+  .sarah-chen {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .case-a-2847 {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .cases-notification {
+    border-radius: 20px;
+    padding: 16px;
+  }
+
+  .frame-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .frame-item {
+    display: none;
+  }
+
+  .accepted-wrapper {
+    width: 100%;
+    flex: unset;
+    padding: 10px 16px;
+  }
+
+  .sarah-chen {
+    font-size: 18px;
+    line-height: 26px;
+  }
+
+  .case-a-2847 {
+    font-size: 14px;
+  }
+}

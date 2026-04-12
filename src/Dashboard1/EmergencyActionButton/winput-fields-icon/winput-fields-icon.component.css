@@ -1,0 +1,55 @@
+.paramedic-instances2 { display: none; }
+
+.selection-header,
+.w-input-fields-icon4 {
+  align-self: stretch;
+  display: flex;
+  align-items: flex-start;
+}
+
+.w-input-fields-icon4 {
+  flex-direction: column;
+  gap: 8px;
+  text-align: left;
+  font-size: 24px;
+  color: #1a1d1f;
+  font-family: Inter;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.selection-header {
+  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+  box-sizing: border-box;
+}
+
+.select-all,
+.select-paramedic {
+  margin: 0;
+  position: relative;
+  font-size: inherit;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: inherit;
+}
+
+.select-all {
+  font-size: 20px;
+  color: var(--Functional-Info-info-500);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: opacity 0.15s;
+}
+
+.select-all:hover { opacity: 0.75; }
+
+@media screen and (max-width: 450px) {
+  .selection-header { flex-wrap: wrap; gap: 20px; }
+  .select-all, .select-paramedic { font-size: 19px; line-height: 26px; }
+  .select-all { font-size: 16px; }
+}

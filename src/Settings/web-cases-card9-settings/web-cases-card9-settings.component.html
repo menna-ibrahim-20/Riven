@@ -1,0 +1,148 @@
+<main class="settings-card">
+  <header class="card-header">
+    <div class="header-inner">
+      <div class="icon-wrap">
+        <i class="fa-solid fa-building-columns header-icon"></i>
+      </div>
+      <h1 class="card-title">General Settings</h1>
+    </div>
+  </header>
+
+  <div class="divider"></div>
+
+  <!-- Profile Image -->
+  <div class="profile-img-wrap">
+    <div class="profile-img-circle">
+      <img
+        [src]="hospitalImageUrl || 'assets/img/Frame 326.png'"
+        alt="Hospital"
+        class="profile-img"
+        (error)="onImgError($event)"
+      />
+      <button class="edit-img-btn" (click)="fileInput.click()" type="button">
+        <i class="fa-solid fa-pen"></i>
+      </button>
+      <input #fileInput type="file" accept="image/*" hidden (change)="onImageChange($event)" />
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Hospital Name -->
+  <div class="field-group full-width">
+    <label class="field-label">
+      Hospital Name <span style="color:#d64545">*</span>
+    </label>
+    <div class="input-wrap" [class.input-error]="showValidationError && !form.hospitalName.trim()">
+      <i class="fa-solid fa-building-columns input-icon"></i>
+      <input
+        type="text"
+        class="field-input"
+        placeholder="City General Hospital"
+        [(ngModel)]="form.hospitalName"
+        (input)="showValidationError = false"
+      />
+    </div>
+    <span class="error-text" *ngIf="showValidationError && !form.hospitalName.trim()">
+      ⚠ Hospital name is required
+    </span>
+  </div>
+
+  <!-- Address + City State ZIP -->
+  <div class="fields-row">
+    <div class="field-group">
+      <label class="field-label">
+        Address <span style="color:#d64545">*</span>
+      </label>
+      <div class="input-wrap" [class.input-error]="showValidationError && !form.address.trim()">
+        <i class="fa-solid fa-location-dot input-icon"></i>
+        <input
+          type="text"
+          class="field-input"
+          placeholder="123 Medical Center Drive"
+          [(ngModel)]="form.address"
+          (input)="showValidationError = false"
+        />
+      </div>
+      <span class="error-text" *ngIf="showValidationError && !form.address.trim()">
+        ⚠ Address is required
+      </span>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">
+        City, State ZIP <span style="color:#d64545">*</span>
+      </label>
+      <div class="input-wrap" [class.input-error]="showValidationError && !form.cityStateZip.trim()">
+        <i class="fa-solid fa-map input-icon"></i>
+        <input
+          type="text"
+          class="field-input"
+          placeholder="New York, NY 10001"
+          [(ngModel)]="form.cityStateZip"
+          (input)="showValidationError = false"
+        />
+      </div>
+      <span class="error-text" *ngIf="showValidationError && !form.cityStateZip.trim()">
+        ⚠ City, State ZIP is required
+      </span>
+    </div>
+  </div>
+
+  <!-- Phone + Stroke Beds -->
+  <div class="fields-row">
+    <div class="field-group">
+      <label class="field-label">
+        Phone Number <span style="color:#d64545">*</span>
+      </label>
+      <div class="input-wrap" [class.input-error]="showValidationError && !form.phone.trim()">
+        <i class="fa-solid fa-phone input-icon"></i>
+        <input
+          type="tel"
+          class="field-input"
+          placeholder="+1 (555) 123-4567"
+          [(ngModel)]="form.phone"
+          (input)="showValidationError = false"
+        />
+      </div>
+      <span class="error-text" *ngIf="showValidationError && !form.phone.trim()">
+        ⚠ Phone number is required
+      </span>
+    </div>
+
+    <div class="field-group">
+      <label class="field-label">Available Stroke Beds</label>
+      <div class="input-wrap">
+        <i class="fa-solid fa-bed input-icon"></i>
+        <select class="field-input field-select" [(ngModel)]="form.strokeBeds">
+          <option *ngFor="let n of [1,2,3,4,5,6,7,8,9,10]" [value]="n">{{ n }}</option>
+        </select>
+        <i class="fa-solid fa-chevron-down select-arrow"></i>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Validation Error Banner -->
+  <div class="error-banner" *ngIf="showValidationError">
+    <i class="fa-solid fa-triangle-exclamation"></i>
+    Please fill in all required fields before saving.
+  </div>
+
+  <!-- Save Button -->
+  <button
+    class="save-btn"
+    (click)="saveGeneral()"
+    [disabled]="isSaving"
+  >
+    <span *ngIf="isSaving" class="spinner"></span>
+    <i *ngIf="!isSaving" class="fa-solid fa-circle-check"></i>
+    <span>{{ isSaving ? 'Saving...' : 'Save Changes' }}</span>
+  </button>
+
+  <!-- Success Message -->
+  <div class="success-msg" *ngIf="savedSuccess">
+    <i class="fa-solid fa-circle-check"></i> Changes saved successfully!
+  </div>
+</main>

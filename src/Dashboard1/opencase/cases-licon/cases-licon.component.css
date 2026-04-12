@@ -1,0 +1,17 @@
+.cases-l-icon2 {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-01);
+  background-color: transparent;
+  height: var(--height-24);
+  width: var(--width-24);
+  position: relative;
+}
+.div,
+.div2,
+.div3,
+.div4,
+.div5 {
+  position: relative;
+  display: none;
+}

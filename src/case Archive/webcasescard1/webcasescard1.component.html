@@ -1,0 +1,68 @@
+<div class="filter-bar">
+  <div class="search-wrap">
+    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+    <input class="search-input" type="text"
+      placeholder="Search by case ID, paramedic…"
+      [(ngModel)]="search"
+      (ngModelChange)="onSearchInput()"
+      aria-label="Search cases"/>
+  </div>
+
+  <div class="filter-select">
+    <select [(ngModel)]="severity" (ngModelChange)="onFilterChange()" aria-label="Severity filter">
+      <option *ngFor="let opt of severityOptions" [value]="opt">{{ opt || 'All severities' }}</option>
+    </select>
+    <span class="select-label">{{ severity || 'All severities' }}</span>
+    <i class="fa-solid fa-chevron-down chevron"></i>
+  </div>
+
+  <div class="filter-select">
+    <select [(ngModel)]="status" (ngModelChange)="onFilterChange()" aria-label="Status filter">
+      <option *ngFor="let opt of statusOptions" [value]="opt">{{ opt || 'All statuses' }}</option>
+    </select>
+    <span class="select-label">{{ status || 'All statuses' }}</span>
+    <i class="fa-solid fa-chevron-down chevron"></i>
+  </div>
+
+  <!-- Date picker -->
+  <div class="filter-date-wrap">
+    <div class="filter-select filter-date" (click)="toggleCalendar()">
+      <i class="fa-regular fa-calendar"></i>
+      <span class="select-label">{{ date || 'Select date' }}</span>
+      <i *ngIf="date" class="fa-solid fa-xmark clear-date"
+        (click)="$event.stopPropagation(); clearDate()"></i>
+      <i *ngIf="!date" class="fa-solid fa-chevron-down chevron"></i>
+    </div>
+
+    <!-- Calendar dropdown -->
+    <div class="calendar-dropdown" *ngIf="showCalendar">
+      <div class="calendar-header">
+        <button class="cal-nav" (click)="prevMonth()">
+          <i class="fa-solid fa-chevron-left"></i>
+        </button>
+        <span class="cal-month">{{ monthName }}</span>
+        <button class="cal-nav" (click)="nextMonth()">
+          <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <div class="calendar-grid">
+        <div class="cal-day-name" *ngFor="let d of ['Su','Mo','Tu','We','Th','Fr','Sa']">{{ d }}</div>
+        <div
+          *ngFor="let day of calendarDays"
+          class="cal-day"
+          [class.cal-day--empty]="!day"
+          [class.cal-day--today]="isToday(day)"
+          [class.cal-day--selected]="isSelectedDay(day)"
+          (click)="selectDay(day)">
+          {{ day }}
+        </div>
+      </div>
+
+      <div class="calendar-footer">
+        <button class="cal-today-btn" (click)="selectDay(calendarDate.getDate())">Today</button>
+        <button class="cal-close-btn" (click)="closeCalendar()">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

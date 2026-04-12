@@ -1,0 +1,14 @@
+.overview-section {
+  display: flex; flex-direction: column;
+  gap: 24px;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+}
+.overview-title { margin: 0; font-size: 32px; font-weight: 700; line-height: 1.25; color: #111827; }
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+@media (max-width: 900px) { .cards-grid { gap: 16px; } }
+@media (max-width: 750px) { .overview-title { font-size: 26px; } .overview-section { gap: 16px; } }
+@media (max-width: 450px) { .overview-title { font-size: 20px; } .cards-grid { grid-template-columns: 1fr 1fr; gap: 12px; } }

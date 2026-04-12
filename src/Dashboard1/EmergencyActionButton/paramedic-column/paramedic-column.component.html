@@ -1,0 +1,33 @@
+<div class="paramedic-instances" [class.selected]="isSelected" (click)="toggleCheck()">
+  <div class="profile-container">
+    <div class="profile-details">
+      <div class="profile-icon-placeholder">
+        <div class="person-head"></div>
+        <div class="person-body"></div>
+      </div>
+    </div>
+    <div class="paramedic-details">
+      <div class="sarah-chen">Sarah Chen</div>
+      <div class="pm-001">PM-001</div>
+    </div>
+  </div>
+
+  <div class="container-details">
+    <div class="container"></div>
+    <div class="online">Online</div>
+  </div>
+
+  <div class="meta-text">AMB-045</div>
+  <div class="meta-text">156</div>
+  <div class="meta-text">8.5 min</div>
+  <div class="meta-text active-now">Active now</div>
+
+  <div class="select-wrapper" (click)="$event.stopPropagation()">
+    <input
+      class="select"
+      type="checkbox"
+      [checked]="isSelected"
+      (change)="onCheckChange($event)"
+    />
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.nav-item3 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 999px;
+  padding: 10px 12px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  color: var(--Primary-primary-main-500, #08848d);
+}
+
+.nav-item3.selected {
+  background-color: var(--Primary-primary-main-500, #08848d);
+  color: #ffffff;
+  padding: 10px 20px;
+}
+
+.nav-icon {
+  font-size: 20px;
+}
+
+.nav-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+  font-family: var(--font-inter, Inter, sans-serif);
+}

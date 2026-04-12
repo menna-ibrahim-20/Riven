@@ -1,0 +1,5 @@
+<button class="logout-btn" (click)="onLogOut()" [disabled]="isLoggingOut">
+  <span *ngIf="isLoggingOut" class="spinner"></span>
+  <i *ngIf="!isLoggingOut" class="fa-solid fa-right-from-bracket"></i>
+  <span>{{ isLoggingOut ? 'Logging out...' : text }}</span>
+</button>

@@ -1,0 +1,186 @@
+.frame-parent {
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  background-color: var(--color-gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 40px;
+  box-sizing: border-box;
+  gap: var(--gap-20);
+  position: relative;
+  font-family: var(--font-inter);
+  flex-wrap: nowrap;
+}
+
+/* ===== Logo ===== */
+.main-ai-cta-parent {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+.main-ai-cta { width: 52px; object-fit: contain; flex-shrink: 0; }
+.frame-wrapper { display: flex; align-items: center; }
+.r-parent { display: flex; align-items: flex-end; gap: 1px; }
+.r, .ven {
+  margin: 0;
+  font-size: 28px;
+  line-height: 1;
+  font-weight: 700;
+  color: var(--Primary-primary-main-500);
+  font-family: var(--font-literata);
+}
+.vector-parent { display: flex; flex-direction: column; align-items: center; gap: 1px; }
+.vector-icon  { width: 11px; height: 22px; }
+.vector-icon2 { width: 11px; height: 18px; }
+.icoutline-emergency-icon { width: 11px; align-self: flex-start; margin-top: 3px; }
+
+/* ===== Desktop Nav ===== */
+.desktop-nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+}
+
+/* ===== Right Side ===== */
+.web-noti-cta-parent {
+  display: flex;
+  align-items: center;
+  gap: var(--gap-16);
+  flex-shrink: 0;
+}
+.frame-child {
+  width: 0.5px;
+  height: 40px;
+  background-color: var(--color-silver);
+  flex-shrink: 0;
+}
+.frame-group { display: flex; align-items: center; gap: 10px; }
+.frame-item {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.city-general-hospital-parent { display: flex; flex-direction: column; gap: 2px; }
+.city-general-hospital {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--Primary-primary-main-500);
+  white-space: nowrap;
+}
+.new-york-ny {
+  font-size: 13px;
+  color: var(--color-darkslategray);
+  white-space: nowrap;
+}
+
+/* ===== Hamburger ===== */
+.hamburger-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.hamburger-btn span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background-color: var(--Primary-primary-main-500);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  transform-origin: center;
+}
+.hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== Mobile Menu ===== */
+.mobile-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  background-color: #f2f2f2;
+  z-index: 1000;
+  border-top: 1px solid rgba(0,0,0,0.08);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.10);
+}
+.mobile-menu.show {
+  display: block;
+}
+
+/* ===== Mobile Nav List ===== */
+.mobile-nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.mobile-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 24px;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-darkslategray, #444);
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  transition: background 0.15s ease;
+  font-family: var(--font-inter);
+}
+
+.mobile-nav-item:last-child {
+  border-bottom: none;
+}
+
+.mobile-nav-item:hover {
+  background-color: rgba(0,0,0,0.04);
+}
+
+.mobile-active {
+  color: var(--Primary-primary-main-500) !important;
+  font-weight: 600;
+  background-color: rgba(29, 158, 117, 0.05);
+}
+
+.mobile-nav-icon {
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+  color: inherit;
+  flex-shrink: 0;
+}
+
+/* ===== Responsive ===== */
+@media screen and (max-width: 1024px) {
+  .frame-parent { padding: 12px 24px; }
+  .desktop-nav-wrapper { display: none; }
+  .hamburger-btn { display: flex; }
+  .city-general-hospital-parent { display: none; }
+  .frame-child { display: none; }
+  .frame-item { width: 40px; height: 40px; }
+  .r, .ven { font-size: 22px; }
+  .main-ai-cta { width: 42px; }
+}
+
+@media screen and (max-width: 480px) {
+  .frame-parent { padding: 10px 16px; }
+  .r, .ven { font-size: 18px; }
+  .main-ai-cta { width: 36px; }
+  .frame-item { width: 34px; height: 34px; }
+}

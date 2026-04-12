@@ -1,0 +1,16 @@
+<!-- FAB button -->
+<button class="fab-btn" (click)="goToEmergency()" title="Emergency Broadcast">
+  <div class="fab-circle">
+    <i class="fa-solid fa-triangle-exclamation fab-icon"></i>
+  </div>
+</button>
+
+<!-- Modal overlay
+<div class="overlay" *ngIf="isOpen" (click)="isOpen = false">
+  <div class="modal-wrap" (click)="$event.stopPropagation()">
+    <app-web-emergency-action-button
+      (close)="isOpen = false"
+      (broadcastSent)="onBroadcastSent($event)">
+    </app-web-emergency-action-button>
+  </div>
+</div> -->
