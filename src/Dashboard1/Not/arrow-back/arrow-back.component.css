@@ -1,0 +1,21 @@
+.arrow-back-w {
+  height: 56px;
+  width: 56px;
+  box-shadow: var(--Shadows-Component-elevation-inputs-small-elements);
+  border-radius: 999px;
+  background-color: #08848d;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+.arrow-back-w:hover {
+  background-color: #0aa3b2;
+}
+.arrow-back-icon-fa {
+  font-size: 20px;
+  color: #ffffff;
+}

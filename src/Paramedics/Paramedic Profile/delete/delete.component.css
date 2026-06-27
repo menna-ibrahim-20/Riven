@@ -1,0 +1,39 @@
+.cta-w-delete {
+  cursor: pointer;
+  border: 1.5px solid var(--Functional-Error-error-500);
+  padding: 15px 40px;
+  background-color: #fafafa;
+  height: 56px;
+  flex: 1;
+  border-radius: 999px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background 0.2s;
+  min-width: 180px;
+}
+.cta-w-delete:hover {
+  background-color: #fdeaea;
+}
+.delete-icon-fa {
+  font-size: 18px;
+  color: var(--Functional-Error-error-500);
+}
+.delete-paramedic {
+  position: relative;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 600;
+  font-family: Inter;
+  color: var(--Functional-Error-error-500);
+  text-align: center;
+}
+@media (max-width: 600px) {
+  .cta-w-delete {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}

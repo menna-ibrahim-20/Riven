@@ -1,1 +1,274 @@
-/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Literata:wght@600&display=swap");
+
+
+
+
+:root {
+
+  /* Figma Variables */
+
+  /* Color */
+  --Accent-accent-500: #7c5cff;
+  --Functional-Error-error-50: #fdeaea;
+  --Functional-Error-error-500: #d64545;
+  --Functional-Info-info-50: #e8f1ff;
+  --Functional-Info-info-500: #2f80ed;
+  --Functional-Success-success-500: #0fa573;
+  --Primary-primary-50: #e6fcfd;
+  --Primary-primary-900: #033a42;
+  --Primary-primary-main-500: #0aa3b2;
+  --Surface-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Common Style Variables */
+
+  /* Shadows */
+  --Shadows-Component-elevation-cards-list-items: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --Shadows-Component-elevation-dialogs-modals: 0px 4px 8px rgba(0, 0, 0, 0.12);
+  --Shadows-Component-elevation-floating-panels-menus: 0px 6px 16px
+    rgba(0, 0, 0, 0.14);
+  --Shadows-Component-elevation-inputs-small-elements: 0px 1px 2px
+    rgba(0, 0, 0, 0.08);
+  --Shadows-Component-elevation-overlays-system-alerts: 0px 8px 24px
+    rgba(0, 0, 0, 0.16);
+
+
+  /* Figma Variables */
+
+  /* Color */
+  --Accent-accent-500: #7c5cff;
+  --Functional-Error-error-50: #fdeaea;
+  --Functional-Error-error-500: #d64545;
+  --Functional-Info-info-50: #e8f1ff;
+  --Functional-Info-info-500: #2f80ed;
+  --Functional-Success-success-500: #0fa573;
+  --Primary-primary-50: #e6fcfd;
+  --Primary-primary-900: #033a42;
+  --Primary-primary-main-500: #0aa3b2;
+  --Surface-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Common Style Variables */
+
+  /* Shadows */
+  --Shadows-Component-elevation-cards-list-items: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --Shadows-Component-elevation-dialogs-modals: 0px 4px 8px rgba(0, 0, 0, 0.12);
+  --Shadows-Component-elevation-floating-panels-menus: 0px 6px 16px
+    rgba(0, 0, 0, 0.14);
+  --Shadows-Component-elevation-inputs-small-elements: 0px 1px 2px
+    rgba(0, 0, 0, 0.08);
+  --Shadows-Component-elevation-overlays-system-alerts: 0px 8px 24px
+    rgba(0, 0, 0, 0.16);
+
+
+  /* Figma Variables */
+
+  /* Color */
+  --Accent-accent-500: #7c5cff;
+  --Functional-Error-error-50: #fdeaea;
+  --Functional-Error-error-500: #d64545;
+  --Functional-Info-info-50: #e8f1ff;
+  --Functional-Info-info-500: #2f80ed;
+  --Functional-Success-success-500: #0fa573;
+  --Primary-primary-50: #e6fcfd;
+  --Primary-primary-900: #033a42;
+  --Primary-primary-main-500: #0aa3b2;
+  --Surface-overlay: rgba(0, 0, 0, 0.5);
+
+  /* Common Style Variables */
+
+  /* Shadows */
+  --Shadows-Component-elevation-cards-list-items: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  --Shadows-Component-elevation-dialogs-modals: 0px 4px 8px rgba(0, 0, 0, 0.12);
+  --Shadows-Component-elevation-floating-panels-menus: 0px 6px 16px
+    rgba(0, 0, 0, 0.14);
+  --Shadows-Component-elevation-inputs-small-elements: 0px 1px 2px
+    rgba(0, 0, 0, 0.08);
+  --Shadows-Component-elevation-overlays-system-alerts: 0px 8px 24px
+    rgba(0, 0, 0, 0.16);
+
+  /* ── Brand Colors ── */
+  --Primary-primary-main-500: #0aa3b2;
+  --Primary-primary-50:       #e6fcfd;
+  --Primary-primary-900:      #033a42;
+
+  --Functional-Error-error-50:    #fdeaea;
+  --Functional-Error-error-500:   #d64545;
+  --Functional-Info-info-50:      #e8f1ff;
+  --Functional-Info-info-500:     #2f80ed;
+  --Functional-Success-success-500: #0fa573;
+  --Accent-accent-500:            #7c5cff;
+  --Neutral-neutral-950:          #0d0f11;
+  --Surface-overlay:              rgba(0, 0, 0, 0.5);
+
+  /* ── Common Colors ── */
+  --color-aliceblue:        #e8f1ff;
+  --color-azure:            #e6f7f2;
+  --color-cornflowerblue:   #78acff;
+  --color-darkgoldenrod:    #b37400;
+  --color-darkslategray:    #4a4f52;
+  --color-dodgerblue:       #2f80ed;
+  --color-gainsboro:        #d6dadd;
+  --color-goldenrod:        #ffcc66;
+  --color-gray-100:         #fafafa;
+  --color-gray-200:         #1a1d1f;
+  --color-lightcoral:       #e68a8a;
+  --color-mediumaquamarine: #89d9c1;
+  --color-mediumseagreen:   #0fa573;
+  --color-oldlace:          #fff7e6;
+  --color-silver:           #c0c5c7;
+  --color-teal:             #08848d;
+
+  /* ── Riven Auth Variables ── */
+  --riven-primary:          #00B5A6;
+  --riven-primary-dark:     #008F83;
+  --riven-primary-light:    #E6F9F8;
+  --riven-text:             #1A1A2E;
+  --riven-text-secondary:   #6B7280;
+  --riven-border:           #E5E7EB;
+  --riven-input-bg:         #F9FAFB;
+  --riven-white:            #FFFFFF;
+  --riven-error:            #EF4444;
+  --riven-radius:           8px;
+  --riven-radius-lg:        12px;
+  --riven-shadow:           0 4px 24px rgba(0,0,0,0.10);
+  --riven-shadow-lg:        0 8px 40px rgba(0,0,0,0.14);
+
+  /* ── Fonts ── */
+  --font-inter:    Inter;
+  --font-literata: Literata;
+
+  /* ── Font Sizes ── */
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-19: 19px;
+  --fs-20: 20px;
+  --fs-22: 22px;
+  --fs-24: 24px;
+  --fs-26: 26px;
+  --fs-28: 28px;
+  --fs-32: 32px;
+  --fs-40: 40px;
+
+  /* ── Line Heights ── */
+  --lh-15: 15px;
+  --lh-16: 16px;
+  --lh-20: 20px;
+  --lh-22: 22px;
+  --lh-24: 24px;
+  --lh-26: 26px;
+  --lh-29: 29px;
+  --lh-32: 32px;
+  --lh-36: 36px;
+  --lh-40: 40px;
+  --lh-48: 48px;
+
+  /* ── Gaps ── */
+  --gap-4:   4px;
+  --gap-7:   7px;
+  --gap-8:   8px;
+  --gap-10:  10px;
+  --gap-12:  12px;
+  --gap-15:  15px;
+  --gap-16:  16px;
+  --gap-20:  20px;
+  --gap-24:  24px;
+  --gap-30:  30px;
+  --gap-32:  32px;
+  --gap-60:  60px;
+  --gap-4_6: 4.6px;
+
+  /* ── Paddings ── */
+  --padding-0:   0px;
+  --padding-3:   3px;
+  --padding-4:   4px;
+  --padding-5:   5px;
+  --padding-6:   6px;
+  --padding-8:   8px;
+  --padding-10:  10px;
+  --padding-11:  11px;
+  --padding-12:  12px;
+  --padding-14:  14px;
+  --padding-15:  15px;
+  --padding-16:  16px;
+  --padding-20:  20px;
+  --padding-22:  22px;
+  --padding-23:  23px;
+  --padding-24:  24px;
+  --padding-40:  40px;
+  --padding-48:  48px;
+  --padding-120: 120px;
+  --padding-126: 126px;
+  --padding-143: 143px;
+
+  /* ── Border Radius ── */
+  --br-16:  16px;
+  --br-24:  24px;
+  --br-32:  32px;
+  --br-999: 999px;
+
+  /* ── Borders ── */
+  --border-1:  1px solid var(--color-gainsboro);
+  --border-2:  1.5px solid var(--color-teal);
+  --border-3:  1px solid var(--color-lightcoral);
+  --border-4:  1px solid var(--color-cornflowerblue);
+  --border-5:  1px solid var(--Primary-primary-main-500);
+  --border-6:  1.5px solid var(--color-lightcoral);
+  --border-7:  1.5px solid var(--color-goldenrod);
+  --border-8:  1.5px solid var(--color-gainsboro);
+  --border-9:  2px solid var(--color-cornflowerblue);
+  --border-10: 1.5px solid var(--Functional-Error-error-500);
+
+  /* ── Shadows ── */
+  --Shadows-Component-elevation-cards-list-items:    0px 2px 4px rgba(0,0,0,0.10);
+  --Shadows-Component-elevation-dialogs-modals:      0px 4px 8px rgba(0,0,0,0.12);
+  --Shadows-Component-elevation-floating-panels-menus: 0px 6px 16px rgba(0,0,0,0.14);
+  --Shadows-Component-elevation-inputs-small-elements: 0px 1px 2px rgba(0,0,0,0.08);
+  --Shadows-Component-elevation-overlays-system-alerts: 0px 8px 24px rgba(0,0,0,0.16);
+
+  /* ── Widths & Heights ── */
+  --height-0_5: 0.5px;
+  --height-24:  24px;
+  --height-32:  32px;
+  --height-44:  44px;
+  --height-48:  48px;
+  --height-56:  56px;
+  --height-350: 350px;
+
+  --width-18:  18px;
+  --width-20:  20px;
+  --width-24:  24px;
+  --width-32:  32px;
+  --width-44:  44px;
+  --width-64:  64px;
+  --width-100: 100px;
+  --width-150: 150px;
+  --width-187: 187px;
+  --width-192: 192px;
+  --width-193: 193px;
+  --width-363: 363px;
+
+  --min-w-178: 178px;
+  --min-w-180: 180px;
+  --min-w-193: 193px;
+}
+
+/* ── Global Reset ── */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* ── Responsive Navbar ── */
+@media screen and (max-width: 1024px) {
+  app-navbar app-web-nav              { display: none !important; }
+  app-navbar .city-general-hospital-parent { display: none !important; }
+  app-navbar .frame-child             { display: none !important; }
+  app-navbar .frame-item {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+
+}

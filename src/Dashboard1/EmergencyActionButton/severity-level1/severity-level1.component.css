@@ -1,0 +1,6 @@
+.severity-level2 {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

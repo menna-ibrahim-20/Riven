@@ -1,0 +1,70 @@
+<section class="hospital-overview-parent">
+  <h2 class="hospital-overview">{{ hospitalOverview }}</h2>
+  <div class="hospital-cards">
+
+    <div class="web-card">
+      <div class="frame-parent5">
+        <div class="icon-type-parent">
+          <div class="icon-type" style="background:#e8f1ff">
+            <i class="fa-solid fa-user-group card-icon" style="color:#4a7fff"></i>
+          </div>
+          <span class="card-separators" style="color:#4a4f52">Total Paramedics</span>
+        </div>
+        <h2 class="separators-two">
+          <span class="skeleton" *ngIf="isLoading"></span>
+          <span *ngIf="!isLoading">{{ totalParamedics }}</span>
+        </h2>
+        <div class="cases-this-week" style="color:#4a4f52">Registered team members</div>
+      </div>
+    </div>
+
+    <div class="web-card">
+      <div class="frame-parent5">
+        <div class="icon-type-parent">
+          <div class="icon-type" style="background:#e6f7f2">
+            <i class="fa-solid fa-earth-americas card-icon" style="color:#0fa573"></i>
+          </div>
+          <span class="card-separators" style="color:#4a4f52">Active Paramedics</span>
+        </div>
+        <h2 class="separators-two">
+          <span class="skeleton" *ngIf="isLoading"></span>
+          <span *ngIf="!isLoading">{{ activeParamedics }}</span>
+        </h2>
+        <div class="cases-this-week" style="color:#0fa573">Online now</div>
+      </div>
+    </div>
+
+    <div class="web-card">
+      <div class="frame-parent5">
+        <div class="icon-type-parent">
+          <div class="icon-type" style="background:#fff7e6">
+            <i class="fa-regular fa-clock card-icon" style="color:#d4860a"></i>
+          </div>
+          <span class="card-separators" style="color:#4a4f52">Avg Assessment Time</span>
+        </div>
+        <h2 class="separators-two">
+          <span class="skeleton" *ngIf="isLoading"></span>
+          <span *ngIf="!isLoading">{{ avgTime }}</span>
+        </h2>
+        <div class="cases-this-week" style="color:#0fa573">↓ 5% faster</div>
+      </div>
+    </div>
+
+    <div class="web-card">
+      <div class="frame-parent5">
+        <div class="icon-type-parent">
+          <div class="icon-type" style="background:#fff7e6">
+            <i class="fa-solid fa-user-group card-icon" style="color:#d4860a"></i>
+          </div>
+          <span class="card-separators" style="color:#4a4f52">Total Cases This Week</span>
+        </div>
+        <h2 class="separators-two">
+          <span class="skeleton" *ngIf="isLoading"></span>
+          <span *ngIf="!isLoading">{{ casesThisWeek }}</span>
+        </h2>
+        <div class="cases-this-week" style="color:#4a4f52">All time</div>
+      </div>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,26 @@
+<footer class="w-input-fields-icon4">
+  <div class="selection-header">
+    <h3 class="select-paramedic">Select Paramedic</h3>
+    <h3 class="select-all" (click)="toggleSelectAll()">Select All</h3>
+  </div>
+
+  <div *ngIf="isLoading" class="loading-text">Loading paramedics...</div>
+
+  <ng-container *ngFor="let p of paramedics; let i = index">
+    <app-paramedic-column
+      [name]="p.fullName ?? (p.firstName + ' ' + p.lastName)"
+      [paramedicId]="'PM-' + p.userId.toString().padStart(3, '0')"
+      [status]="p.status === 'Active' ? 'online' : 'offline'"
+      [ambulance]="'—'"
+      [totalCases]="0"
+      [avgTime]="'—'"
+      [lastActive]="p.status === 'Active' ? 'Active now' : 'Offline'"
+      [isSelected]="selectedStates[i]"
+      (selectedChange)="onParamedicChange(i, $event)">
+    </app-paramedic-column>
+  </ng-container>
+
+  <div *ngIf="!isLoading && paramedics.length === 0" class="loading-text">
+    No paramedics found.
+  </div>
+</footer>

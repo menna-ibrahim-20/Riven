@@ -1,0 +1,143 @@
+<div class="modal-overlay" (click)="onOverlayClick($event)">
+  <div class="web-cases-card" #modalBox>
+
+    <header class="paramedic-action">
+      <div class="paramedic-addition">
+        <div class="profile-wrapper">
+          <i class="fa-solid fa-user-plus profile-icon-fa" *ngIf="!editMode"></i>
+          <i class="fa-solid fa-user-pen  profile-icon-fa" *ngIf="editMode"></i>
+        </div>
+        <h1 class="add-paramedic">{{ editMode ? 'Edit Paramedic Profile' : 'Add Paramedic' }}</h1>
+      </div>
+      <div class="exit-wrapper">
+        <button class="exit-btn" type="button" (click)="onClose()">
+          <i class="fa-solid fa-xmark exit-icon-fa"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="web-cases-card-child"></div>
+
+    <div class="avatar-section">
+      <div class="avatar-wrapper">
+        <div class="avatar-circle">
+          <img *ngIf="avatarPreview" [src]="avatarPreview" alt="Preview" class="avatar-img" />
+          <i *ngIf="!avatarPreview" class="fa-solid fa-user-nurse avatar-placeholder-icon"></i>
+        </div>
+        <button class="upload-btn" type="button" (click)="fileInput.click()">
+          <i class="fa-solid fa-arrow-up-from-bracket"></i>
+        </button>
+        <input #fileInput type="file" accept="image/*" hidden (change)="onAvatarChange($event)" />
+      </div>
+      <span class="avatar-hint">Upload photo (optional)</span>
+    </div>
+
+    <div class="web-cases-card-child"></div>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+      <section class="w-input-fields-icon-parent">
+        <div class="field-wrap">
+          <div class="field-label-text">First Name <span class="req">*</span></div>
+          <div class="input-row" [class.input-error]="isInvalid('firstName')">
+            <i class="fa-solid fa-user input-icon-fa"></i>
+            <input class="enter-patient-name" placeholder="Davis" type="text" formControlName="firstName" />
+          </div>
+          <span class="err-text" *ngIf="isInvalid('firstName')">⚠ First name is required</span>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label-text">Last Name <span class="req">*</span></div>
+          <div class="input-row" [class.input-error]="isInvalid('lastName')">
+            <i class="fa-solid fa-user input-icon-fa"></i>
+            <input class="enter-patient-name" placeholder="Adam" type="text" formControlName="lastName" />
+          </div>
+          <span class="err-text" *ngIf="isInvalid('lastName')">⚠ Last name is required</span>
+        </div>
+      </section>
+
+      <section class="w-input-fields-icon-parent">
+        <div class="field-wrap">
+          <div class="field-label-text">Role <span class="req">*</span></div>
+          <div class="input-row select-row" [class.input-error]="isInvalid('role')">
+            <i class="fa-solid fa-briefcase-medical input-icon-fa"></i>
+            <select class="enter-patient-name field-select" formControlName="role">
+              <option value="" disabled>Select Role</option>
+              <option value="Paramedic">Paramedic</option>
+              <option value="Senior Paramedic">Senior Paramedic</option>
+              <option value="Lead Paramedic">Lead Paramedic</option>
+              <option value="EMT">EMT</option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="err-text" *ngIf="isInvalid('role')">⚠ Role is required</span>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label-text">Ambulance Number <span class="req">*</span></div>
+          <div class="input-row select-row" [class.input-error]="isInvalid('ambulance')">
+            <i class="fa-solid fa-truck-medical input-icon-fa"></i>
+            <select class="enter-patient-name field-select" formControlName="ambulance">
+              <option value="" disabled>
+                {{ ambulancesLoading ? 'Loading...' : 'Select Ambulance' }}
+              </option>
+              <option *ngFor="let amb of ambulances" [value]="amb.ambulanceId">
+                {{ amb.vehicleNumber }}
+              </option>
+            </select>
+            <i class="fa-solid fa-chevron-down select-arrow"></i>
+          </div>
+          <span class="err-text" *ngIf="isInvalid('ambulance')">⚠ Ambulance is required</span>
+        </div>
+      </section>
+
+      <section class="w-input-fields-icon-parent">
+        <div class="field-wrap">
+          <div class="field-label-text">Email <span class="req">*</span></div>
+          <div class="input-row" [class.input-error]="isInvalid('email')">
+            <i class="fa-solid fa-envelope input-icon-fa"></i>
+            <input class="enter-patient-name" placeholder="davis.adam@cityambulance.org" type="email"
+              formControlName="email" />
+          </div>
+          <span class="err-text" *ngIf="isInvalid('email')">
+            {{ form.get('email')?.errors?.['required'] ? '⚠ Email is required' : '⚠ Invalid email' }}
+          </span>
+        </div>
+        <div class="field-wrap">
+          <div class="field-label-text">Phone Number <span class="req">*</span></div>
+          <div class="input-row" [class.input-error]="isInvalid('phone')">
+            <i class="fa-solid fa-phone input-icon-fa"></i>
+            <input class="enter-patient-name" placeholder="+1 (555) 123-4567" type="tel" formControlName="phone" />
+          </div>
+          <span class="err-text" *ngIf="isInvalid('phone')">⚠ Valid phone is required</span>
+        </div>
+      </section>
+
+      <div class="web-cases-card-child"></div>
+
+      <div class="form-error-banner" *ngIf="submitted && form.invalid">
+        <i class="fa-solid fa-triangle-exclamation"></i>
+        Please fill in all required fields correctly.
+      </div>
+
+      <div class="form-success-banner" *ngIf="saveSuccess">
+        <i class="fa-solid fa-circle-check"></i>
+        {{ editMode ? 'Profile updated successfully!' : 'Paramedic added successfully!' }}
+      </div>
+
+      <button type="submit" class="cta-w-button" [disabled]="isSaving">
+        <span *ngIf="isSaving" class="btn-spinner"></span>
+        <i *ngIf="!isSaving && !editMode" class="fa-solid fa-user-plus"></i>
+        <i *ngIf="!isSaving && editMode" class="fa-solid fa-floppy-disk"></i>
+        <div class="update-readiness">
+          {{ isSaving ? (editMode ? 'Saving...' : 'Adding...') : (editMode ? 'Save Changes' : 'Add Paramedic') }}
+        </div>
+      </button>
+
+    </form>
+
+    <div class="form-error-banner" *ngIf="saveError">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      {{ saveError }}
+    </div>
+
+  </div>
+</div>

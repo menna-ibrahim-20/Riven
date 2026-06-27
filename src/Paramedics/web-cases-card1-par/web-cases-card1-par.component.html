@@ -1,0 +1,55 @@
+<div class="web-cases-card1">
+
+  <div class="team-details">
+    <div class="th col-name">Paramedic</div>
+    <div class="th col-status">Status</div>
+    <div class="th col-amb">Ambulance</div>
+    <div class="th col-cases">Total Cases</div>
+    <div class="th col-time">Avg Time</div>
+    <div class="th col-active">Last Active</div>
+    <div class="th col-action">Actions</div>
+  </div>
+
+  <div class="paramedic-list">
+    <ng-container *ngFor="let p of paramedics">
+      <div class="divider"></div>
+      <section class="paramedic-row">
+
+        <div class="td col-name">
+          <div class="profile-wrapper">
+            <i class="fa-solid fa-user profile-icon-fa"></i>
+          </div>
+          <div class="name-block">
+            <span class="p-name">{{ p.name }}</span>
+            <span class="p-id">{{ p.id }}</span>
+          </div>
+        </div>
+
+        <div class="td col-status">
+          <div class="status-badge" [ngClass]="statusClass(p.status)">
+            <span class="dot"></span>
+            <span>{{ statusLabel(p.status) }}</span>
+          </div>
+        </div>
+
+        <div class="td col-amb">{{ p.ambulance }}</div>
+        <div class="td col-cases">{{ p.totalCases }}</div>
+        <div class="td col-time muted">{{ p.avgTime }}</div>
+        <div class="td col-active" [class.green]="isActive(p.lastActive)">
+          {{ p.lastActive }}
+        </div>
+
+        <div class="td col-action">
+          <!-- ✅ Fix: removed [eye] binding — لا يوجد @Input eye في EyeparComponent -->
+          <app-eyepar
+            [property1]="'Default'"
+            [caseId]="p.id"
+            (click)="viewParamedic.emit(p)">
+          </app-eyepar>
+        </div>
+
+      </section>
+    </ng-container>
+  </div>
+
+</div>

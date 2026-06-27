@@ -1,0 +1,31 @@
+.web-case-cta {
+  cursor: pointer;
+  border: 1.5px solid #0aa3b2;
+  padding: 10px 22px;
+  background-color: #ffffff;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.web-case-cta:hover {
+  background-color: #0aa3b2;
+  border-color: #0aa3b2;
+}
+
+.web-case-cta:hover .open-case {
+  color: #ffffff;
+}
+
+.open-case {
+  position: relative;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 600;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+  color: #0aa3b2;
+  text-align: center;
+  white-space: nowrap;
+}

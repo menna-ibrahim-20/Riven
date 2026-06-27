@@ -1,0 +1,6 @@
+<button class="severity-level" [class.selected]="selected" (click)="select()">
+  <div class="severity-layout">
+    <div class="low">{{low}}</div>
+    <div class="advisory" [ngStyle]="advisoryStyle">{{advisory}}</div>
+  </div>
+</button>

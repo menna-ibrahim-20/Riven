@@ -1,0 +1,12 @@
+<tr class="table-row" *ngIf="caseRow">
+  <td class="cell cell--id">{{ caseRow.id }}</td>
+  <td class="cell cell--date">{{ caseRow.date }}</td>
+  <td class="cell cell--patient">{{ patientDisplay }}</td>
+  <td class="cell"><span [class]="severityClass">{{ caseRow.severity }}</span></td>
+  <td class="cell cell--ai">{{ aiPredictionDisplay }}</td>
+  <td class="cell"><span [class]="statusClass">{{ caseRow.status }}</span></td>
+  <td class="cell cell--paramedic">{{ caseRow.paramedic }}</td>
+  <td class="cell cell--action">
+    <app-eye [caseId]="caseRow.id" (click)="onView()"></app-eye>
+  </td>
+</tr>

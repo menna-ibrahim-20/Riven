@@ -1,0 +1,45 @@
+.severity-layout,
+.severity-level {
+  display: flex;
+  flex-direction: column;
+}
+.severity-level {
+  cursor: pointer;
+  border: 1.5px solid #d6dadd;
+  padding: 16px;
+  background-color: #fafafa;
+  flex: 1;
+  border-radius: 16px;
+  overflow: hidden;
+  align-items: flex-start;
+  justify-content: center;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.severity-level.selected {
+  border-color: #1D9E75;
+  background-color: #E1F5EE;
+}
+.severity-layout {
+  align-self: stretch;
+  align-items: center;
+  gap: 12px;
+}
+.advisory,
+.low {
+  position: relative;
+  font-size: 16px;
+  line-height: 24px;
+  font-family: Inter;
+  color: #4a4f52;
+  text-align: left;
+}
+.advisory {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+  color: #1a1d1f;
+}
+.severity-level.selected .advisory,
+.severity-level.selected .low {
+  color: #085041;
+}

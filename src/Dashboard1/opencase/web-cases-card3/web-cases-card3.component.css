@@ -1,0 +1,30 @@
+.web-cases-card5 {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-20);
+  text-align: left;
+  font-size: var(--fs-18);
+  color: var(--color-gray-200);
+  font-family: var(--font-inter);
+}
+.level-of-consciousness {
+  position: relative;
+  line-height: var(--lh-26);
+  font-weight: 600;
+}
+.symptoms-state {
+  cursor: pointer;
+  margin: 0;
+  height: var(--height-24);
+  width: var(--width-24);
+  border-radius: var(--br-999);
+  background-color: var(--color-gray-100);
+  border: var(--border-6);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--padding-4);
+}

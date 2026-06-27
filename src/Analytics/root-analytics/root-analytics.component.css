@@ -1,0 +1,47 @@
+.root {
+   width: 100%; max-width: 1280px; margin: 0 auto;
+  padding: 32px 24px; display: flex; flex-direction: column;
+  gap: 32px; box-sizing: border-box;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+}
+
+.analytics-performance-parent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.analytics-performance {
+ margin: 0; font-size: 32px; font-weight: 700; line-height: 1.25; color: #111827;
+}
+.web-card-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+.time-assessment-card {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.card-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+@media (max-width: 1200px) {
+  .web-card-container { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1050px) {
+  .analytics-performance { font-size: 24px; line-height: 32px; }
+  .card-container { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .root { padding: 20px 16px; gap: 20px; }
+  .analytics-performance { font-size: 22px; line-height: 28px; }
+  .web-card-container { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .card-container { grid-template-columns: 1fr; }
+}
+@media (max-width: 480px) {
+  .web-card-container { grid-template-columns: 1fr; }
+  .analytics-performance { font-size: 20px; }
+}

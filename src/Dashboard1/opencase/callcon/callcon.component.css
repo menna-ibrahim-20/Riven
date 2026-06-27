@@ -1,0 +1,8 @@
+.call-icon {
+  font-size: 18px;
+  color: #0aa3b2;
+}
+
+.main[data-property1="Variant2"] .call-icon {
+  color: var(--color-gray-100);
+}

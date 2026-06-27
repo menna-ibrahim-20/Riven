@@ -1,0 +1,29 @@
+.update-preparation {
+  align-self: stretch;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--gap-20);
+  text-align: left;
+  font-size: var(--fs-18);
+  color: var(--color-gray-200);
+  font-family: var(--font-inter);
+}
+.patient-room-ready {
+  position: relative;
+  line-height: var(--lh-26);
+  font-weight: 600;
+}
+.description-container {
+  cursor: pointer;
+  margin: 0;
+  height: var(--height-24);
+  width: var(--width-24);
+  position: relative;
+  border-radius: var(--br-999);
+  background-color: var(--color-gray-100);
+  border: var(--border-4);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+}

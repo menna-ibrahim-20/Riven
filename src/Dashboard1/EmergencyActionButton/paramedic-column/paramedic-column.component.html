@@ -1,0 +1,32 @@
+<div class="paramedic-instances" [class.selected]="isSelected" (click)="toggleCheck()">
+  <div class="profile-container">
+    <div class="profile-details">
+      <div class="profile-icon-placeholder">
+        <div class="person-head"></div>
+        <div class="person-body"></div>
+      </div>
+    </div>
+    <div class="paramedic-details">
+      <div class="sarah-chen">{{ name }}</div>
+      <div class="pm-001">{{ paramedicId }}</div>
+    </div>
+  </div>
+  <div class="container-details">
+    <div class="container"></div>
+    <div class="online">
+      {{ status === 'online' ? 'Online' : status === 'enroute' ? 'En Route' : 'Offline' }}
+    </div>
+  </div>
+  <div class="meta-text">{{ ambulance }}</div>
+  <div class="meta-text">{{ totalCases }}</div>
+  <div class="meta-text">{{ avgTime }}</div>
+  <div class="meta-text active-now">{{ lastActive }}</div>
+  <div class="select-wrapper" (click)="$event.stopPropagation()">
+    <input
+      class="select"
+      type="checkbox"
+      [checked]="isSelected"
+      (change)="onCheckChange($event)"
+    />
+  </div>
+</div>

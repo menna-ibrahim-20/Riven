@@ -1,0 +1,9 @@
+<div class="time-cases">
+  <button
+    *ngFor="let tab of tabs"
+    class="time-selection"
+    [class.active]="activeTab === tab.key"
+    (click)="selectTab(tab.key)">
+    {{ tab.label }}
+  </button>
+</div>

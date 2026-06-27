@@ -1,0 +1,6 @@
+<button class="web-noti-cta" [attr.data-property1]="property1" (click)="goToNotifications()">
+  <i class="fa-regular fa-bell" style="color: rgb(62, 148, 122); font-size: 20px;"></i>
+  <span class="notif-badge" *ngIf="unreadCount() > 0">
+    {{ unreadCount() > 99 ? '99+' : unreadCount() }}
+  </span>
+</button>

@@ -1,0 +1,29 @@
+<div class="web-nav">
+  <ul class="nav-item-parent">
+    <li routerLink="/dashboard/home" routerLinkActive="rla-active" #dashRla="routerLinkActive">
+      <app-nav-item
+        [property1]="dashRla.isActive ? 'Selected' : 'Default'"
+        [text]="'Dashboard'">
+      </app-nav-item>
+    </li>
+
+    <li routerLink="/dashboard/cases" routerLinkActive="rla-active" #casesRla="routerLinkActive">
+      <app-cases [property1]="casesRla.isActive ? 'Selected' : 'Default'">
+      </app-cases>
+    </li>
+
+    <li>
+      <app-paramedic></app-paramedic>
+    </li>
+
+   <li routerLink="/dashboard/analytics" routerLinkActive="rla-active" #analyticsRla="routerLinkActive">
+      <app-analytics [property1]="analyticsRla.isActive ? 'Selected' : 'Default'">
+      </app-analytics>
+    </li>
+
+    <li routerLink="/dashboard/settings" routerLinkActive="rla-active" #settingsRla="routerLinkActive">
+      <app-profile [property1]="settingsRla.isActive ? 'Selected' : 'Default'">
+      </app-profile>
+    </li>
+  </ul>
+</div>

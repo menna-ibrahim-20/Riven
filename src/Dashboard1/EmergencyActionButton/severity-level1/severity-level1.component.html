@@ -1,0 +1,10 @@
+<div class="severity-level2" [attr.data-property1]="property1">
+  <app-severity-level
+    *ngFor="let item of severityLevelItems"
+    [low]="item.low"
+    [advisory]="item.advisory"
+    [advisoryMargin]="item.advisoryMargin"
+    [selected]="selectedSeverity === item.low"
+    (selectedChange)="onSeveritySelected($event)"
+  ></app-severity-level>
+</div>

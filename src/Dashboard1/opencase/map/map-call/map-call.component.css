@@ -1,0 +1,47 @@
+.main {
+  cursor: pointer;
+  border: var(--border-2);
+  padding: var(--padding-15) var(--padding-126);
+  background: #fff;
+  color: var(--Primary-primary-main-500, #0aa3b2);
+  border: 1px solid var(--Primary-primary-main-500, #0aa3b2);
+  width: var(--width-363);
+  height: var(--height-56);
+  border-radius: var(--br-999);
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--gap-10);
+}
+.main:hover{
+  
+    background: #e6fcfd;
+
+}
+
+.main[data-property1="Variant2"] {
+  border: 0;
+  background-color: var(--color-teal);
+}
+
+.main[data-property1="Variant2"] .call-icon {
+  color: var(--color-gray-100);
+}
+
+.main[data-property1="Variant2"] .update-readiness {
+  color: var(--color-gray-100);
+}
+
+.update-readiness {
+  position: relative;
+  font-size: var(--fs-16);
+  line-height: var(--lh-22);
+  font-weight: 600;
+  font-family: var(--font-inter);
+  color: var(--color-teal);
+  text-align: center;
+  flex-shrink: 0;
+}

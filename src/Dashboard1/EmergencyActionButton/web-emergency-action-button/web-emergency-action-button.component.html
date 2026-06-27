@@ -1,0 +1,60 @@
+<!-- Overlay wrapper -->
+<div class="page-overlay">
+  <div class="web-emergency-action-button">
+    <header class="frame-parent">
+      <div class="error-container-parent">
+        <div class="error-container" style="cursor: pointer;">
+          <i class="fa-solid fa-triangle-exclamation error-icon"></i>
+        </div>
+        <h1 class="emergency-broadcast">Emergency Broadcast</h1>
+      </div>
+      <div class="exit-wrapper">
+        <i class="fa-solid fa-xmark exit-icon" (click)="onClose()"></i>
+      </div>
+    </header>
+
+    <div class="emergency-form"></div>
+    <app-winput-fields-icon2 #typeComp></app-winput-fields-icon2>
+
+    <div class="emergency-form"></div>
+    <app-frame111 #severityComp></app-frame111>
+
+    <div class="emergency-form"></div>
+    <app-winput-fields-icon1 #locationComp></app-winput-fields-icon1>
+
+    <div class="emergency-form"></div>
+    <section class="w-input-fields-icon">
+      <h3 class="additional-notes">Additional Notes</h3>
+      <div class="notes-container-wrapper">
+        <div class="notes-container">
+          <div class="notes-input">
+            <i class="fa-regular fa-file-lines cases-l-icon"></i>
+            <textarea
+              class="notes-textarea"
+              placeholder="Enter additional notes or instructions..."
+              [(ngModel)]="notes"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="emergency-form"></div>
+   <app-winput-fields-icon #paramedicComp style="width: 100%;"></app-winput-fields-icon>
+
+    <div class="error-banner" *ngIf="sendError">
+      <i class="fa-solid fa-triangle-exclamation"></i>
+      {{ sendError }}
+    </div>
+
+    <div class="success-banner" *ngIf="sendSuccess">
+      <i class="fa-solid fa-circle-check"></i>
+      Emergency Broadcast Sent Successfully!
+    </div>
+
+    <app-direction
+      [property1]="'Variant2'"
+      [text]="sending ? 'Sending...' : 'Send Emergency Broadcast'"
+      (send)="sendBroadcast()"
+    ></app-direction>
+  </div>
+</div>

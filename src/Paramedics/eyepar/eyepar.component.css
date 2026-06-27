@@ -1,0 +1,27 @@
+.show-case {
+  cursor: pointer;
+  border: 1px solid var(--Primary-primary-main-500);
+  padding: 8px;
+  background-color: #fafafa;
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+}
+.eye-icon {
+  width: 20px;
+  position: relative;
+  max-height: 100%;
+}
+.eye-btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px; border-radius: 999px;
+  border: 1px solid #d1d5db; background: transparent;
+  cursor: pointer; color: #6b7280;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.eye-btn:hover, .eye-btn--hover {
+  background-color: #e1f5ee; border-color: #5dcaa5; color: #0f6e56;
+}
+.eye-btn:active { transform: scale(0.94); }
+.eye-icon { width: 16px; height: 16px; pointer-events: none; }

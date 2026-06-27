@@ -1,0 +1,1 @@
+- [x] 2. Update app.component.html to use <web-card> instead of <app-web-card>&#10;

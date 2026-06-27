@@ -1,0 +1,37 @@
+<section class="cases-notification">
+  <div class="frame-group">
+    <div class="frame-wrapper">
+      <div class="frame-container">
+        <div class="profile-wrapper">
+          <div class="profile-icon-placeholder">
+            <i class="fa-solid fa-user-nurse profile-icon-fa"></i>
+          </div>
+        </div>
+        <div class="sarah-chen-parent">
+          <h3 class="sarah-chen">{{ paramedicName }}</h3>
+          <div class="pm-001">{{ paramedicId }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="frame-item"></div>
+    <div class="container-parent"
+         [style.background-color]="status === 'online' ? '#e6f7f2' : '#f5f6f7'"
+         [style.border-color]="status === 'online' ? '#89d9c1' : '#d0d4d8'">
+      <div class="container"
+           [style.background-color]="status === 'online' ? '#0fa573' : '#b0b7c0'">
+      </div>
+      <div class="online"
+           [style.color]="status === 'online' ? '#0fa573' : '#6b7280'">
+        {{ status === 'online' ? 'Online' : 'Offline' }}
+      </div>
+    </div>
+    <div class="frame-item"></div>
+    <div class="case-a-2847">Case #{{ caseId }}</div>
+    <div class="frame-item"></div>
+    <div class="case-a-2847">{{ ambulance }}</div>
+    <div class="frame-item"></div>
+    <button class="accepted-wrapper" [ngStyle]="frameButtonStyle">
+      <div class="accepted" [ngStyle]="acceptedStyle">{{ accepted }}</div>
+    </button>
+  </div>
+</section>

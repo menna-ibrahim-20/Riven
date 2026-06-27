@@ -1,0 +1,8 @@
+<div class="page">
+  <app-fram [cases]="allCases"></app-fram>
+  <app-webcasescard1 (filtersChange)="onFiltersChange($event)"></app-webcasescard1>
+  <section class="section">
+    <h2 class="section-title">Case Archive</h2>
+    <app-webcasescard [cases]="filteredCases"></app-webcasescard>
+  </section>
+</div>

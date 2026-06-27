@@ -1,0 +1,12 @@
+<div class="web-card" [class.web-card--hover]="property1 === 'Hover'">
+  <div class="card-content">
+    <div class="card-top">
+      <div class="icon-circle" [ngStyle]="iconBgStyle">
+        <i [class]="iconClass" class="card-icon" [ngStyle]="iconColorStyle"></i>
+      </div>
+      <span class="card-label" [ngStyle]="separatorAStyle">{{ separatorA }}</span>
+    </div>
+    <h2 class="card-num">{{ num }}</h2>
+    <p class="card-sub" [ngStyle]="subTextStyle">{{ text }}</p>
+  </div>
+</div>

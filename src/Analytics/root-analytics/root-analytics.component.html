@@ -1,0 +1,53 @@
+<div class="root">
+
+  <!-- KPI Cards -->
+  <section class="analytics-performance-parent">
+    <h1 class="analytics-performance">Analytics &amp; Performance</h1>
+    <div class="web-card-container">
+      <app-web-card-analytics
+        *ngFor="let item of webCardItems"
+        [cardSeparators]="item.cardSeparators"
+        [text]="item.text"
+        [num]="item.num"
+        [iconTypeBackgroundColor]="item.iconTypeBackgroundColor"
+        [casesThisWeekColor]="item.casesThisWeekColor">
+      </app-web-card-analytics>
+    </div>
+  </section>
+
+  <!-- Filter Bar -->
+  <app-web-cases-card3-analytics
+    [reportType]="reportType"
+    [dateFrom]="dateFrom"
+    [dateTo]="dateTo"
+    [isLoading]="isLoading"
+    [errorMsg]="errorMsg"
+    (reportTypeChange)="reportType = $event; applyFilters()"
+    (dateFromChange)="dateFrom = $event; applyFilters()"
+    (dateToChange)="dateTo = $event; applyFilters()"
+    (generate)="generatePDF()">
+  </app-web-cases-card3-analytics>
+
+  <!-- Charts -->
+  <main class="time-assessment-card">
+
+    <app-web-cases-card7-analytics [chartData]="dailyCaseVolume">
+    </app-web-cases-card7-analytics>
+
+    <section class="card-container">
+      <app-web-cases-card4-analytics [severity]="severity">
+      </app-web-cases-card4-analytics>
+      <app-web-cases-card8-analytics [chartData]="assessmentTime">
+      </app-web-cases-card8-analytics>
+    </section>
+
+    <section class="card-container">
+      <app-web-cases-card5-analytics [chartData]="hourlyCases">
+      </app-web-cases-card5-analytics>
+      <app-web-cases-card6-analytics [chartData]="criticalDiagnosis">
+      </app-web-cases-card6-analytics>
+    </section>
+
+    <app-emergency-fab></app-emergency-fab>
+  </main>
+</div>

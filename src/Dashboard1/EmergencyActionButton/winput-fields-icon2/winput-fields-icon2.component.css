@@ -1,0 +1,66 @@
+.w-input-fields-icon2 {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  text-align: left;
+  font-size: 24px;
+  color: #1a1d1f;
+  font-family: Inter;
+}
+.emergency-type {
+  margin: 0;
+  align-self: stretch;
+  font-size: inherit;
+  line-height: 32px;
+  font-weight: 600;
+  font-family: inherit;
+}
+.w-input-fields-icon-inner {
+  align-self: stretch;
+  border-radius: 999px;
+  background-color: #fafafa;
+  border: 1px solid #d6dadd;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 14px 15px;
+  font-size: 16px;
+  color: #c0c5c7;
+  transition: border-color 0.15s;
+}
+.w-input-fields-icon-inner:focus-within {
+  border-color: #1D9E75;
+}
+.frame-group {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.paramedic-parent {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.paramedic-icon-fa {
+  font-size: 16px;
+  color: #9CA3AF;
+  flex-shrink: 0;
+}
+.select-emergency-type {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 15px;
+  font-family: Inter;
+  color: #1a1d1f;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+}
+@media screen and (max-width: 450px) {
+  .emergency-type { font-size: 19px; line-height: 26px; }
+}

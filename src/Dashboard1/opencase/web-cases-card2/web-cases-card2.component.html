@@ -1,0 +1,154 @@
+<div class="web-cases-card4">
+  <header class="home-parent">
+    <div class="home">
+      <div class="inner-profile">
+        <img class="profile-icon" alt="" src="/assets/Profile.svg" />
+      </div>
+      <h1 class="patient-summary">Patient Summary</h1>
+    </div>
+    <button class="patient-state2">
+      <div class="time-parent">
+        <img class="time-icon" alt="" src="/assets/Time.svg" />
+        <div class="min-ago">30 min ago</div>
+      </div>
+    </button>
+  </header>
+  <div class="profile"></div>
+  <div class="factors-symptoms-parent">
+    <div class="factors-symptoms">
+      <div class="case-id">Case ID</div>
+      <div class="my-application">EMG-2024-A2849</div>
+    </div>
+    <div class="factors-symptoms">
+      <div class="case-id">Date</div>
+      <div class="my-application">11/20/2025</div>
+    </div>
+    <div class="factors-symptoms">
+      <div class="case-id">Time</div>
+      <div class="my-application">11:28 PM</div>
+    </div>
+  </div>
+  <div class="profile"></div>
+  <div class="factors-symptoms-parent">
+    <div class="factors-symptoms">
+      <div class="case-id">Name</div>
+      <div class="my-application">Alex Rodrigo</div>
+    </div>
+    <div class="factors-symptoms">
+      <div class="case-id">Age</div>
+      <div class="my-application">65 Years</div>
+    </div>
+    <div class="factors-symptoms">
+      <div class="case-id">Gender</div>
+      <div class="my-application">Male</div>
+    </div>
+  </div>
+  <div class="profile"></div>
+  <div class="edit-preference">
+    <div class="case-id">AI Diagnosis</div>
+    <div class="safe">
+      <button class="patient-state3">
+        <div class="time-parent">
+          <img class="error-icon" alt="" src="/assets/Error.svg" />
+          <div class="ischemic-stroke2">Ischemic Stroke</div>
+        </div>
+      </button>
+      <div class="nihss-26-severe">NIHSS: 26 (Severe Stroke)</div>
+    </div>
+  </div>
+  <div class="profile"></div>
+  <div class="risk-factors-parent">
+    <div class="risk-factors">Risk Factors</div>
+    <div class="patient-state-parent">
+      <button class="patient-state3">
+        <div class="time-parent">
+          <img class="time-icon" alt="" src="/assets/Home.svg" />
+          <div class="diabetes">Diabetes</div>
+        </div>
+      </button>
+      <div class="patient-state5">
+        <div class="time-parent">
+          <img class="time-icon" alt="" src="/assets/Home.svg" />
+          <div class="case-id">Hypertension</div>
+        </div>
+      </div>
+      <div class="patient-state5">
+        <div class="time-parent">
+          <img class="time-icon" alt="" src="/assets/Home.svg" />
+          <div class="case-id">Smoking</div>
+        </div>
+      </div>
+      <div class="patient-state5">
+        <div class="home-parent2">
+          <img class="time-icon" alt="" src="/assets/Home.svg" />
+          <div class="case-id">Physical Inactive</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="profile"></div>
+  <div class="risk-factors-parent">
+    <div class="risk-factors">Present Symptoms</div>
+    <div class="patient-state-group">
+      <div class="patient-state8">
+        <div class="home-parent2">
+          <img class="time-icon" alt="" src="/assets/Home.svg" />
+          <div class="case-id">Loss of balance and coordination</div>
+        </div>
+      </div>
+      <div class="patient-state8">
+        <div class="home-parent2">
+          <img class="time-icon" alt="" src="/assets/Home.svg" />
+          <div class="case-id">Nausea and vomiting</div>
+        </div>
+      </div>
+      <button class="patient-state10">
+        <div class="home-parent2">
+          <img class="time-icon" alt="" src="/assets/Home.svg" />
+          <div class="dizziness-or-vertigo">Dizziness or vertigo</div>
+        </div>
+      </button>
+    </div>
+  </div>
+  <div class="profile"></div>
+  <section class="vital-signs-parent">
+    <div class="risk-factors">Vital Signs</div>
+    <div class="pressure-info-parent">
+      <div class="pressure-info">
+        <app-vitalcard
+          *ngFor="let item of vitalCardItems; let index = index"
+          [property1]="item.property1"
+          [num]="item.num"
+          [sTitle]="item.sTitle"
+        ></app-vitalcard>
+      </div>
+      <div class="pressure-info">
+        <app-vitalcard
+          *ngFor="let item of vitalCardItems1; let index = index"
+          [property1]="item.property1"
+          [num]="item.num"
+          [sTitle]="item.sTitle"
+        ></app-vitalcard>
+      </div>
+    </div>
+  </section>
+  <div class="profile"></div>
+  <div class="group">
+    <div class="test-info">
+      <img class="error-icon" alt="" src="/assets/Cases-L.svg" />
+    </div>
+    <div class="file-detailed-testpdf-parent">
+      <div class="case-id">File / Detailed Test.pdf</div>
+      <img class="error-icon" alt="" src="/assets/Download.svg" />
+    </div>
+    <label class="label6" htmlFor="file-2:4858">
+      <div class="test-info">
+        <img class="error-icon" alt="" src="/assets/Cases-L.svg" />
+      </div>
+      <div class="file-detailed-testpdf-parent">
+        <div class="case-id">File / Detailed Test.pdf</div>
+        <img class="error-icon" alt="" src="/assets/Download.svg" />
+      </div>
+    </label>
+  </div>
+</div>

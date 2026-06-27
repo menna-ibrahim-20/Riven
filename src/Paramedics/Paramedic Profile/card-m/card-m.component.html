@@ -1,0 +1,13 @@
+<div class="card-m" [attr.data-property1]="property1">
+  <div class="values-parent">
+    <div class="values">
+      <i class="card-icon" [class]="iconClass"></i>
+      <div class="total-cases">{{title}}</div>
+    </div>
+    <h2 class="divider" [ngStyle]="dividerStyle">{{num}}</h2>
+    <div class="up-parent" *ngIf="extra">
+      <i *ngIf="showUpIcon" class="fa-solid fa-arrow-trend-up up-icon-fa"></i>
+      <div class="vs-last-period" [ngStyle]="vsLastPeriodStyle">{{secText}}</div>
+    </div>
+  </div>
+</div>

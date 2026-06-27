@@ -1,0 +1,27 @@
+<section class="w-input-fields-icon3">
+  <h3 class="location-area">Location / Area</h3>
+  <div class="w-input-fields-icon-child">
+    <div class="frame-container">
+      <div class="location-parent">
+        <i class="fa-solid fa-location-dot location-icon-fa"></i>
+        <input
+          class="enter-location-or2"
+          placeholder="Enter location or affected area..."
+          type="text"
+          [(ngModel)]="location"
+        />
+      </div>
+      <i class="fa-solid fa-location-crosshairs location-icon-fa"
+         style="cursor: pointer; color: #1D9E75;"
+         (click)="getCurrentLocation()"
+         [title]="isLocating ? 'Getting location...' : 'Use current location'">
+      </i>
+    </div>
+  </div>
+  <div class="locating-text" *ngIf="isLocating">
+    <i class="fa-solid fa-spinner fa-spin"></i> Getting your location...
+  </div>
+  <div class="location-error" *ngIf="locationError">
+    <i class="fa-solid fa-triangle-exclamation"></i> {{ locationError }}
+  </div>
+</section>

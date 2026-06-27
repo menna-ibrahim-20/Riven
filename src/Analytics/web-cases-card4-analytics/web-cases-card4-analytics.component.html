@@ -1,0 +1,37 @@
+<section class="chart-card">
+  <div class="chart-header">
+    <div class="chart-icon" style="background:#e6f7f2;">
+      <i class="fa-solid fa-users" style="color:#0fa573;font-size:18px;"></i>
+    </div>
+    <h2 class="chart-title">Case Severity Distribution</h2>
+  </div>
+  <div class="divider"></div>
+  <div class="severity-body">
+    <div class="donut-wrap">
+      <canvas #chartCanvas role="img" aria-label="Case severity donut chart"></canvas>
+    </div>
+    <div class="severity-labels">
+      <div class="severity-row">
+        <span class="sev-dot" style="background:#1976d2;"></span>
+        <div>
+          <div class="sev-name">Mild</div>
+          <div class="sev-count">{{ severity.mild }} case{{ severity.mild !== 1 ? 's' : '' }} ({{ mildPct }}%)</div>
+        </div>
+      </div>
+      <div class="severity-row">
+        <span class="sev-dot" style="background:#f59e0b;"></span>
+        <div>
+          <div class="sev-name">Moderate</div>
+          <div class="sev-count">{{ severity.moderate }} case{{ severity.moderate !== 1 ? 's' : '' }} ({{ modPct }}%)</div>
+        </div>
+      </div>
+      <div class="severity-row">
+        <span class="sev-dot" style="background:#e53935;"></span>
+        <div>
+          <div class="sev-name">Severe</div>
+          <div class="sev-count">{{ severity.severe }} case{{ severity.severe !== 1 ? 's' : '' }} ({{ sevPct }}%)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

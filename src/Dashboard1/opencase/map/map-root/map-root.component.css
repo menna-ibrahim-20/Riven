@@ -1,0 +1,73 @@
+.root {
+  width: 100%;
+}
+
+.web-cases-card {
+  background: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  width: 700px;
+  max-width: 90vw;
+  display: flex;        
+  flex-direction: column; 
+  gap: 14px;              
+  box-sizing: border-box;
+}
+
+.details-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.details {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.live-tracking {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1a1d1f;
+  margin: 0;
+}
+
+.location-icon {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.exit-button {
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #e5e7eb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  flex-shrink: 0;
+}
+
+.exit-button:hover {
+  border-color: #0aa3b2;
+}
+
+.exit-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.location-icon {
+  font-size: 28px;
+  color: #0aa3b2;
+}
+
+.exit-icon {
+  font-size: 16px;
+  color: #6b7280;
+}

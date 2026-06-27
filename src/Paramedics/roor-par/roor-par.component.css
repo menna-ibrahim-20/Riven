@@ -1,0 +1,68 @@
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1d1f;
+  margin: 0 0 12px 0;
+  letter-spacing: -0.3px;
+}
+
+.paramedic-team-parent,
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.root {
+ 
+  width: 100%; max-width: 1280px; margin: 0 auto;
+  padding: 32px 24px; display: flex; flex-direction: column;
+  gap: 32px; box-sizing: border-box;
+  font-family: var(--font-inter, 'Inter', sans-serif);
+}
+.paramedic-team-parent {
+  color: #1a1d1f;
+  font-family: Inter;
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+ .paramedic-team  {
+      margin: 0;
+    font-size: 32px!important;
+    font-weight:500!important;
+    line-height: 1.25;
+    color: #111827;
+}
+
+@media screen and (max-width: 1050px) {
+  .root {
+    gap: 24px;
+  }
+  .paramedic-team-parent {
+    gap: 16px;
+  }
+  .paramedic-team {
+    font-size: 26px;
+    line-height: 32px;
+  }
+}
+@media screen and (max-width: 750px) {
+  .root {
+    gap: 24px;
+  }
+  .paramedic-team-parent {
+    gap: 16px;
+  }
+  .paramedic-team {
+    font-size: 26px;
+    line-height: 32px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .paramedic-team {
+    font-size: 19px;
+    line-height: 24px;
+  }
+}

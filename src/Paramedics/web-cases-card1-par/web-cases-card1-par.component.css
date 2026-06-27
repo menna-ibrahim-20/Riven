@@ -1,0 +1,131 @@
+/* ===== Card Container ===== */
+.web-cases-card1 {
+  align-self: stretch;
+  border-radius: 32px;
+  background: #fafafa;
+  border: 1px solid #d6dadd;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding: 22px 23px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-family: Inter, sans-serif;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+/* Scrollbar */
+.web-cases-card1::-webkit-scrollbar { height: 4px; }
+.web-cases-card1::-webkit-scrollbar-track { background: transparent; }
+.web-cases-card1::-webkit-scrollbar-thumb { background-color: #c0c5c7; border-radius: 999px; }
+
+/* ===== Header Row ===== */
+.team-details {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding-bottom: 4px;
+  min-width: 600px;
+}
+.th {
+  font-size: 14px;
+  font-weight: 600;
+  color: #4a4f52;
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+}
+
+/* ===== List ===== */
+.paramedic-list { display: flex; flex-direction: column; }
+.divider { height: 0.5px; background: #d6dadd; margin: 0 -4px; }
+
+.paramedic-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 0;
+  transition: background 0.12s;
+  min-width: 600px;
+}
+.paramedic-row:hover { background: #f6f8fa; border-radius: 12px; }
+
+/* ===== Cells ===== */
+.td {
+  font-size: 15px;
+  color: #1a1d1f;
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+}
+.td.muted  { color: #4a4f52; font-size: 14px; }
+.td.green  { color: #0fa573; font-weight: 500; }
+
+/* ===== Column Widths ===== */
+.col-name   { flex: 2; min-width: 150px; gap: 12px; }
+.col-status { flex: 1.2; min-width: 100px; }
+.col-amb    { flex: 1; min-width: 90px; }
+.col-cases  { flex: 1; min-width: 80px; }
+.col-time   { flex: 1; min-width: 80px; }
+.col-active { flex: 1.2; min-width: 100px; }
+.col-action { flex: 0 0 100px; justify-content: center; padding-left: 0; }
+
+/* ===== Profile ===== */
+.profile-wrapper {
+  border-radius: 999px;
+  background: #d8dce0;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.profile-icon-fa { font-size: 20px; color: #8a9099; }
+
+.name-block { display: flex; flex-direction: column; gap: 2px; }
+.p-name { font-size: 15px; font-weight: 500; color: #1a1d1f; line-height: 1.3; }
+.p-id   { font-size: 12px; color: #4a4f52; }
+
+/* ===== Status Badge ===== */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.st-online  { background: #e6f7f2; border: 1px solid #89d9c1; color: #0a7a5a; }
+.st-enroute { background: #fdeaea; border: 1px solid #f8aaaa; color: #b03030; }
+.st-offline { background: #f5f6f7; border: 1px solid #d0d4d8; color: #6b7280; }
+
+.dot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.st-online  .dot { background: #0fa573; }
+.st-enroute .dot { background: #d64545; }
+.st-offline .dot { background: #b0b7c0; }
+
+/* ===== Mobile Label (hidden on desktop) ===== */
+.mobile-label { display: none; }
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablet */
+@media (max-width: 900px) {
+  .col-time, .col-active { display: none; }
+  .team-details, .paramedic-row { min-width: 450px; }
+}
+
+@media (max-width: 600px) {
+  .col-cases { display: none; }
+  .web-cases-card1 { padding: 16px 12px; border-radius: 24px; }
+  .team-details, .paramedic-row { min-width: 380px; }
+}
+
+@media (max-width: 480px) {
+  .web-cases-card1 { padding: 12px 8px; border-radius: 20px; }
+  .team-details, .paramedic-row { min-width: 340px; }
+  .p-name { font-size: 14px; }
+  .profile-wrapper { width: 38px; height: 38px; }
+}

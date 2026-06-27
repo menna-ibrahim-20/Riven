@@ -1,0 +1,78 @@
+<div class="frame-parent">
+
+  <!-- Logo -->
+  <div class="main-ai-cta-parent">
+    <img class="main-ai-cta" loading="lazy" alt="" src="../assets/img/Main AI CTA.png" />
+    <div class="frame-wrapper">
+      <div class="r-parent">
+        <h1 class="r">R</h1>
+        <div class="vector-parent">
+          <img class="vector-icon" loading="lazy" alt="" src="/assets/img/i.png" />
+        </div>
+        <h2 class="ven">ven</h2>
+        <img class="icoutline-emergency-icon" loading="lazy" alt="" src="/assets/img/ic_outline-emergency.png" />
+      </div>
+    </div>
+  </div>
+
+  <!-- Desktop Nav -->
+  <div class="desktop-nav-wrapper">
+    <app-web-nav></app-web-nav>
+  </div>
+
+  <!-- Right Side -->
+  <div class="web-noti-cta-parent">
+    <app-not-bell></app-not-bell>
+    <div class="frame-child"></div>
+    <div class="frame-group">
+      <img class="frame-item" loading="lazy" alt="" src="../assets/img/Frame 467.png" />
+      <div class="city-general-hospital-parent">
+        <div class="city-general-hospital">City General Hospital</div>
+        <div class="new-york-ny">New York, NY 10001</div>
+      </div>
+    </div>
+    <button class="hamburger-btn" (click)="toggleMenu()" [class.open]="menuOpen" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" [class.show]="menuOpen">
+    <ul class="mobile-nav-list">
+
+      <li class="mobile-nav-item" routerLink="/dashboard/home" routerLinkActive="mobile-active"
+          #dashM="routerLinkActive" (click)="menuOpen = false">
+        <i class="fa-solid fa-gauge mobile-nav-icon"></i>
+        <span>Dashboard</span>
+      </li>
+
+      <li class="mobile-nav-item" routerLink="/dashboard/cases" routerLinkActive="mobile-active"
+          #casesM="routerLinkActive" (click)="menuOpen = false">
+        <i class="fa-solid fa-folder-open mobile-nav-icon"></i>
+        <span>Case Archive</span>
+      </li>
+
+      <li class="mobile-nav-item" routerLink="/dashboard/paramedic" routerLinkActive="mobile-active"
+          #paramM="routerLinkActive" (click)="menuOpen = false">
+        <i class="fa-solid fa-truck-medical mobile-nav-icon"></i>
+        <span>Paramedics</span>
+      </li>
+
+      <li class="mobile-nav-item" routerLink="/dashboard/analytics" routerLinkActive="mobile-active"
+          #analyticsM="routerLinkActive" (click)="menuOpen = false">
+        <i class="fa-solid fa-chart-simple mobile-nav-icon"></i>
+        <span>Analytics</span>
+      </li>
+
+      <li class="mobile-nav-item" routerLink="/dashboard/settings" routerLinkActive="mobile-active"
+          #settingsM="routerLinkActive" (click)="menuOpen = false">
+        <i class="fa-solid fa-user-gear mobile-nav-icon"></i>
+        <span>Settings</span>
+      </li>
+
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,49 @@
+<div class="notifications">
+  <main class="frame-parent">
+    <header class="arrow-back-w-parent">
+      <app-arrow-back [property1]="'Default'" (click)="goBack()"></app-arrow-back>
+      <h1 class="notifications2">Notifications</h1>
+      <app-arrow-back
+        [property1]="'Default'"
+        [arrowBackTransform]="' rotate(180deg)'"
+        [arrowBackOpacity]="'0'"
+        [arrowBackIconTransform]="' rotate(-180deg)'"
+      ></app-arrow-back>
+    </header>
+
+    <div class="frame-child"></div>
+
+    <div class="empty-state" *ngIf="notifications().length === 0">
+      <i class="fa-regular fa-bell-slash"></i>
+      <p>No notifications</p>
+    </div>
+
+    <div
+      *ngFor="let item of notifications()"
+      class="notif-row-wrapper"
+      [class.notif-unread]="!item.read"
+      (click)="onNotifClick(item)"
+    >
+      <app-cases-notification
+        [profile]="item.profile"
+        [paramedicName]="item.paramedicName"
+        [paramedicId]="item.paramedicId"
+        [status]="item.status"
+        [caseId]="item.caseId"
+        [ambulance]="item.ambulance"
+        [accepted]="item.accepted"
+        [frameButtonBorder]="getButtonBorder(item.accepted)"
+        [frameButtonBackgroundColor]="getButtonBg(item.accepted)"
+        [frameButtonMinWidth]="getButtonMinWidth(item.accepted)"
+        [acceptedColor]="getButtonColor(item.accepted)"
+      ></app-cases-notification>
+
+      <span class="unread-dot" *ngIf="!item.read"></span>
+    </div>
+
+  </main>
+
+  <footer class="notifications-inner" *ngIf="notifications().length > 0">
+    <app-clear [property1]="'Default'" (click)="clearAll()"></app-clear>
+  </footer>
+</div>

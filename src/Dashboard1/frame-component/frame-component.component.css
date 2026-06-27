@@ -1,0 +1,47 @@
+.frame-wrapper {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  font-family: Inter, sans-serif;
+  
+}
+
+.hospital-overview-title {
+   margin: 0;
+  font-size: 32px;
+  line-height: 40px;
+  font-weight: 700;
+  color: #1a1d1f;
+   
+}
+
+.web-cards-parent {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  width: 100%;
+}
+
+/* Tablet */
+@media screen and (max-width: 1024px) {
+  .web-cards-parent {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+}
+
+/* Mobile */
+@media screen and (max-width: 600px) {
+  .frame-wrapper {
+    padding: 12px;
+  }
+  .hospital-overview-title {
+    font-size: 18px;
+  }
+  .web-cards-parent {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+}

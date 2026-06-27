@@ -1,0 +1,19 @@
+<div class="web-card">
+  <div class="card-body">
+
+    <div class="card-top">
+      <div class="icon-circle" [style.background]="iconTypeBackgroundColor">
+        <i class="fa-solid {{ iconClass }}" [style.color]="iconColor"></i>
+      </div>
+      <span class="badge"
+            [class.badge--positive]="badgePositive"
+            [class.badge--neutral]="!badgePositive">
+        {{ cardSeparators }}
+      </span>
+    </div>
+
+    <div class="card-value">{{ num }}</div>
+    <div class="card-label" [style.color]="casesThisWeekColor">{{ text }}</div>
+
+  </div>
+</div>
