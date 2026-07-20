@@ -1,7 +1,6 @@
-import { Component, HostBinding, Input, OnChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, HostBinding, Input, OnChanges, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables);
 
 export interface HourlyData { labels: string[]; data: number[]; }
 
@@ -14,72 +13,49 @@ export interface HourlyData { labels: string[]; data: number[]; }
 })
 export class WebCasesCard6AnalyticsComponent implements AfterViewInit, OnChanges {
   @HostBinding('style.display') display = 'contents';
-
   @Input() chartData: HourlyData = {
     labels: ['Jan','Feb','Mar','Apr','May','Jun'],
-    data:   [0, 0, 0, 0, 0, 0],
+    data:   [88, 90, 91, 89, 93, 94],
   };
-
   @ViewChild('chartCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
   private chart?: Chart;
+  private isBrowser: boolean;
 
-  ngAfterViewInit(): void { this.buildChart(); }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      Chart.register(...registerables);
+      this.buildChart();
+    }
+  }
 
   ngOnChanges(): void {
     if (!this.chart) return;
     this.chart.data.labels = this.chartData.labels;
     this.chart.data.datasets[0].data = this.chartData.data;
-
-    // ── حساب الـ min ديناميكياً ──
-    const nonZero = this.chartData.data.filter(v => v > 0);
-    const minVal  = nonZero.length > 0 ? Math.max(0, Math.min(...nonZero) - 10) : 0;
-    const maxVal  = nonZero.length > 0 ? Math.min(100, Math.max(...nonZero) + 5)  : 100;
-
-    (this.chart.options.scales!['y'] as any).min = minVal;
-    (this.chart.options.scales!['y'] as any).max = maxVal;
-
     this.chart.update();
   }
 
   private buildChart(): void {
-    const nonZero = this.chartData.data.filter(v => v > 0);
-    const minVal  = nonZero.length > 0 ? Math.max(0, Math.min(...nonZero) - 10) : 0;
-    const maxVal  = nonZero.length > 0 ? Math.min(100, Math.max(...nonZero) + 5)  : 100;
-
     this.chart = new Chart(this.canvasRef.nativeElement, {
       type: 'line',
       data: {
         labels: this.chartData.labels,
-        datasets: [{
-          label: 'Success Rate',
-          data: this.chartData.data,
-          borderColor: '#0fa573',
-          backgroundColor: 'rgba(15,165,115,0.08)',
-          fill: true,
-          tension: 0.4,
-          pointRadius: 5,
-          pointBackgroundColor: '#0fa573'
-        }]
+        datasets: [{ label: 'Success Rate', data: this.chartData.data,
+          borderColor: '#0fa573', backgroundColor: 'rgba(15,165,115,0.08)',
+          fill: true, tension: 0.4, pointRadius: 5, pointBackgroundColor: '#0fa573' }]
       },
       options: {
-        responsive: true,
-        maintainAspectRatio: false,
+        responsive: true, maintainAspectRatio: false,
         plugins: { legend: { display: false } },
         scales: {
-          x: {
-            grid: { color: 'rgba(0,0,0,0.04)' },
-            ticks: { color: '#6e7477', font: { size: 11 } }
-          },
-          y: {
-            grid: { color: 'rgba(0,0,0,0.04)' },
-            ticks: {
-              color: '#6e7477',
-              font: { size: 11 },
-              callback: (v) => v + '%'
-            },
-            min: minVal,
-            max: maxVal
-          }
+          x: { grid: { color: 'rgba(0,0,0,0.04)' }, ticks: { color: '#6e7477', font: { size: 11 } } },
+          y: { grid: { color: 'rgba(0,0,0,0.04)' },
+            ticks: { color: '#6e7477', font: { size: 11 }, callback: (v) => v + '%' },
+            min: 80, max: 100 }
         }
       }
     });

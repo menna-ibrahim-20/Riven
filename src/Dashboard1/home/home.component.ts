@@ -1,6 +1,6 @@
 import { DirectionComponent } from './../EmergencyActionButton/direction/direction.component';
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Router } from '@angular/router';
 import { interval, Subscription, forkJoin } from 'rxjs';
 import { startWith, switchMap } from 'rxjs/operators';
@@ -42,9 +42,16 @@ export class HomeComponent implements OnInit, OnDestroy {
   constructor(
     private dashboardService: DashboardService,
     private router: Router,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit(): void {
+    // متشغلش الـ polling وقت الـ SSR / prerender (build)، بس في المتصفح
+    if (!isPlatformBrowser(this.platformId)) {
+      this.isLoading = false;
+      return;
+    }
+
     this.refreshSub = interval(30_000)
       .pipe(
         startWith(0),

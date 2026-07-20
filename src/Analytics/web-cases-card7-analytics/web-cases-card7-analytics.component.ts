@@ -1,10 +1,8 @@
-import { Component, HostBinding, Input, OnChanges, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, HostBinding, Input, OnChanges, AfterViewInit, ViewChild, ElementRef, Inject, PLATFORM_ID } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Chart, registerables } from 'chart.js';
-Chart.register(...registerables);
 
 export interface ChartSeriesData { labels: string[]; actual: number[]; average?: number[]; }
-
 
 @Component({
   selector: 'app-web-cases-card7-analytics',
@@ -13,7 +11,6 @@ export interface ChartSeriesData { labels: string[]; actual: number[]; average?:
   templateUrl: './web-cases-card7-analytics.component.html',
   styleUrl: './web-cases-card7-analytics.component.css'
 })
-
 export class WebCasesCard7AnalyticsComponent implements AfterViewInit, OnChanges {
   @HostBinding('style.display') display = 'contents';
   @Input() chartData: ChartSeriesData = {
@@ -23,8 +20,19 @@ export class WebCasesCard7AnalyticsComponent implements AfterViewInit, OnChanges
   };
   @ViewChild('chartCanvas') canvasRef!: ElementRef<HTMLCanvasElement>;
   private chart?: Chart;
+  private isBrowser: boolean;
 
-  ngAfterViewInit(): void { this.buildChart(); }
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(this.platformId);
+  }
+
+  ngAfterViewInit(): void {
+    if (this.isBrowser) {
+      Chart.register(...registerables);
+      this.buildChart();
+    }
+  }
+
   ngOnChanges(): void {
     if (!this.chart) return;
     this.chart.data.labels = this.chartData.labels;
