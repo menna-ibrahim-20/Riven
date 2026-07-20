@@ -3,6 +3,8 @@ import { ParamedicColumnComponent } from '../paramedic-column/paramedic-column.c
 import { CommonModule } from "@angular/common";
 import { HttpClient } from "@angular/common/http";
 import { catchError, of } from "rxjs";
+import { inject } from '@angular/core';
+import { AuthService } from '../../../auth/services/services';
 
 const BASE_URL = 'https://rivenbackend-production.up.railway.app/api';
 
@@ -22,13 +24,22 @@ export class WInputFieldsIconComponent implements OnInit {
   selectedStates: boolean[] = [];
   isLoading = true;
 
+  private authService = inject(AuthService);
+
   private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
+    return this.authService.getHospitalId() ?? 0;
   }
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+    if (!this.hospitalId) {
+      this.paramedics     = [];
+      this.selectedStates = [];
+      this.isLoading      = false;
+      return;
+    }
+
     this.http.get<any[]>(`${BASE_URL}/users/hospital/${this.hospitalId}`)
       .pipe(catchError(() => of([])))
       .subscribe(users => {

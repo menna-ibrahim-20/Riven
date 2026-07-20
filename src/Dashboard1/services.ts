@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, Observable, of, shareReplay } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
+import { inject } from '@angular/core';
+import { AuthService } from '../auth/services/services';
 
 const USE_MOCK = false;
 const BASE_URL = 'https://rivenbackend-production.up.railway.app/api';
@@ -200,9 +202,12 @@ function formatCaseId(caseId: number): string {
 @Injectable({ providedIn: 'root' })
 export class DashboardService {
 
-  private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
-  }
+
+private authService = inject(AuthService);
+
+private get hospitalId(): number {
+  return this.authService.getHospitalId() ?? 0;
+}
 
   private _detailsCache$: Observable<CaseDetailDto[]> | null = null;
 

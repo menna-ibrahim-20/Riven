@@ -8,7 +8,8 @@ import { WInputFieldsIcon1Component } from "../winput-fields-icon1/winput-fields
 import { WInputFieldsIconComponent } from "../winput-fields-icon/winput-fields-icon.component";
 import { Frame111Component } from '../frame111/frame111.component';
 import { DirectionComponent } from '../direction/direction.component';
-
+import { inject } from '@angular/core';
+import { AuthService } from '../../../auth/services/services';
 const BASE_URL = 'https://rivenbackend-production.up.railway.app/api';
 
 @Component({
@@ -41,13 +42,15 @@ export class WebEmergencyActionButtonComponent {
   sendError   = '';
   sendSuccess = false;
 
-  private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
-  }
+private authService = inject(AuthService);
 
-  private get userId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.userId ?? 0;
-  }
+private get hospitalId(): number {
+  return this.authService.getHospitalId() ?? 0;
+}
+
+private get userId(): number {
+  return this.authService.getUser()?.userId ?? 0;
+}
 
   constructor(
     private http:     HttpClient,

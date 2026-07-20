@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { forkJoin, of } from 'rxjs';
 import { catchError } from 'rxjs/operators';
+import { inject } from '@angular/core';
+import { AuthService } from '../../auth/services/services';
 import { WebCardAnalyticsComponent } from '../web-card-analytics/web-card-analytics.component';
 import { WebCasesCard3AnalyticsComponent } from '../web-cases-card3-analytics/web-cases-card3-analytics.component';
 import { WebCasesCard4AnalyticsComponent } from '../web-cases-card4-analytics/web-cases-card4-analytics.component';
@@ -80,9 +82,13 @@ export class RootAnalyticsComponent implements OnInit {
   isLoading  = false;
   errorMsg   = '';
 
-  private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
-  }
+
+
+private authService = inject(AuthService);
+
+private get hospitalId(): number {
+  return this.authService.getHospitalId() ?? 0;
+}
 
   webCardItems = [
     {

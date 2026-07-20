@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of, forkJoin } from 'rxjs';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { inject } from '@angular/core';
+import { AuthService } from '../auth/services/services';
 
 const BASE_URL = 'https://rivenbackend-production.up.railway.app/api';
 
@@ -17,7 +19,6 @@ export interface Paramedic {
   name: string;
   status: 'online' | 'offline' | 'enroute';
   ambulance: string;
-  ambulanceId?: number;
   totalCases: number;
   avgTime: string;
   lastActive: string;
@@ -40,54 +41,26 @@ const SAMPLE_PARAMEDICS: Paramedic[] = [
 @Injectable({ providedIn: 'root' })
 export class ParamedicService {
 
+  private authService = inject(AuthService);
+
   private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
+    return this.authService.getHospitalId() ?? 0;
   }
 
   constructor(private http: HttpClient) {}
 
-  private mapStatus(status: string): 'online' | 'offline' | 'enroute' {
-    const s = (status ?? '').toLowerCase();
-    if (s === 'online' || s === 'active')    return 'online';
-    if (s === 'enroute' || s === 'en route') return 'enroute';
-    return 'offline';
-  }
-
-  private calcAvgTime(cases: any[]): string {
-    const diffs = cases
-      .filter(c => c.onsetTime && c.handoverTime)
-      .map(c => {
-        const onset    = new Date(c.onsetTime).getTime();
-        const handover = new Date(c.handoverTime).getTime();
-        return (handover - onset) / (1000 * 60);
-      })
-      .filter(d => d > 0 && d < 1440);
-
-    if (!diffs.length) return '—';
-    const avg = Math.round(diffs.reduce((a, b) => a + b, 0) / diffs.length);
-    return `${avg}m`;
-  }
-
   getStats(): Observable<ParamedicStats> {
-    return forkJoin({
-      users:     this.http.get<any[]>(`${BASE_URL}/users/hospital/${this.hospitalId}`),
-      analytics: this.http.get<any>(`${BASE_URL}/Cases/analytics/${this.hospitalId}`)
-                          .pipe(catchError(() => of(null)))
-    }).pipe(
-      map(({ users, analytics }) => {
-        const paramedics = users.filter(u =>
-          u.roleId === 3 || u.roleName === 'Paramedic'
-        );
-        const active = paramedics.filter(u => {
-          const s = (u.status ?? '').toLowerCase();
-          return s === 'online' || s === 'active';
-        }).length;
+    if (!this.hospitalId) return of(SAMPLE_STATS);
 
+    return this.http.get<any[]>(`${BASE_URL}/users/hospital/${this.hospitalId}`).pipe(
+      map(users => {
+        const paramedics = users.filter(u => u.roleId === 3 || u.roleName === 'Paramedic');
+        const active     = paramedics.filter(u => u.status === 'Active').length;
         return {
           total:         paramedics.length,
           active,
           avgTime:       '—',
-          casesThisWeek: analytics?.weeklyCases ?? 0,
+          casesThisWeek: 0,
         };
       }),
       catchError(() => of(SAMPLE_STATS))
@@ -95,55 +68,22 @@ export class ParamedicService {
   }
 
   getParamedics(): Observable<Paramedic[]> {
-    return forkJoin({
-      users:      this.http.get<any[]>(`${BASE_URL}/users/hospital/${this.hospitalId}`),
-      ambulances: this.http.get<any[]>(`${BASE_URL}/ambulances/hospital/${this.hospitalId}`)
-                           .pipe(catchError(() => of([]))),
-      cases:      this.http.get<any>(`${BASE_URL}/Cases/hospital/${this.hospitalId}`)
-                           .pipe(catchError(() => of([])))
-    }).pipe(
-      map(({ users, ambulances, cases }) => {
-        const paramedics = users.filter(u =>
-          u.roleId === 3 || u.roleName === 'Paramedic'
-        );
+    if (!this.hospitalId) return of(SAMPLE_PARAMEDICS);
 
-        // normalize cases array
-        const allCases: any[] = Array.isArray(cases)
-          ? cases
-          : (cases?.items ?? []);
-
-        return paramedics.map(u => {
-          const mappedStatus = this.mapStatus(u.status);
-
-          // ── ambulance vehicle number ──
-          const amb = ambulances.find((a: any) => a.ambulanceId === u.ambulanceId);
-          const ambulance = amb?.vehicleNumber ?? (u.ambulanceId
-            ? `AMB-${String(u.ambulanceId).padStart(3, '0')}`
-            : '—');
-
-          // ── cases for this paramedic ──
-          const userCases = allCases.filter((c: any) => c.userId === u.userId);
-          const totalCases = userCases.length;
-          const avgTime    = this.calcAvgTime(userCases);
-
-          // ── last active ──
-          let lastActive = 'Offline';
-          if (mappedStatus === 'online')  lastActive = 'Active now';
-          if (mappedStatus === 'enroute') lastActive = 'En route';
-
-          return {
-            id:          `PM-${String(u.userId).padStart(3, '0')}`,
-            name:        u.fullName ?? `${u.firstName} ${u.lastName}`,
-            status:      mappedStatus,
-            ambulance,
-            ambulanceId: u.ambulanceId ?? null,
-            totalCases,
-            avgTime,
-            lastActive,
-            email:       u.email       ?? '',
-            phone:       u.phoneNumber ?? '',
-          } as Paramedic;
-        });
+    return this.http.get<any[]>(`${BASE_URL}/users/hospital/${this.hospitalId}`).pipe(
+      map(users => {
+        const paramedics = users.filter(u => u.roleId === 3 || u.roleName === 'Paramedic');
+        return paramedics.map(u => ({
+          id:         `PM-${String(u.userId).padStart(3, '0')}`,
+          name:       u.fullName ?? `${u.firstName} ${u.lastName}`,
+          status:     (u.status === 'Active' ? 'online' : 'offline') as 'online' | 'offline' | 'enroute',
+          ambulance:  '—',
+          totalCases: 0,
+          avgTime:    '—',
+          lastActive: u.status === 'Active' ? 'Active now' : 'Offline',
+          email:      u.email       ?? '',
+          phone:      u.phoneNumber ?? '',
+        }));
       }),
       catchError(() => of(SAMPLE_PARAMEDICS))
     );

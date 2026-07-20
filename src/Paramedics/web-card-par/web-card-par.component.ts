@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { inject } from '@angular/core';
+import { AuthService } from '../../auth/services/services';
 
 const BASE_URL = 'https://rivenbackend-production.up.railway.app/api';
 
@@ -39,9 +41,11 @@ const SAMPLE_PARAMEDICS: Paramedic[] = [
 @Injectable({ providedIn: 'root' })
 export class ParamedicService {
 
-  private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
-  }
+private authService = inject(AuthService);
+
+private get hospitalId(): number {
+  return this.authService.getHospitalId() ?? 0;
+}
 
   constructor(private http: HttpClient) {}
 

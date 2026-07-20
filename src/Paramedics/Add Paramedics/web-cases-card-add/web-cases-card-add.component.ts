@@ -5,6 +5,8 @@ import { HttpClient } from "@angular/common/http";
 import { WInputFieldsIcon4AddComponent } from "../winput-fields-icon4-add/winput-fields-icon4-add.component";
 import { Profile1AddComponent } from "../profile1-add/profile1-add.component";
 import { Paramedic } from "../../Par.Service";
+import { inject } from '@angular/core';
+import { AuthService } from '../../../auth/services/services';
 
 const BASE_URL = 'https://rivenbackend-production.up.railway.app/api';
 
@@ -13,6 +15,13 @@ interface AmbulanceDto {
   vehicleNumber:     string;
   operationalStatus: string;
 }
+
+const DEFAULT_AMBULANCES: AmbulanceDto[] = [
+  { ambulanceId: 1,  vehicleNumber: 'AMB-001', operationalStatus: 'Active' },
+  { ambulanceId: 2,  vehicleNumber: 'AMB-002', operationalStatus: 'Active' },
+  { ambulanceId: 3,  vehicleNumber: 'AMB-003', operationalStatus: 'Active' },
+  { ambulanceId: 27, vehicleNumber: 'AMB-027', operationalStatus: 'Active' },
+];
 
 @Component({
   selector: 'app-web-cases-card-add',
@@ -50,8 +59,10 @@ export class WebCasesCardAddComponent implements OnInit {
 
   @ViewChild('modalBox') modalBox!: ElementRef;
 
+  private authService = inject(AuthService);
+
   private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
+    return this.authService.getHospitalId() ?? 0;
   }
 
   // ── extract numeric id from PM-005 → 5 ──
@@ -92,6 +103,12 @@ export class WebCasesCardAddComponent implements OnInit {
   }
 
   private loadAmbulances(): void {
+    if (!this.hospitalId) {
+      this.ambulancesLoading = false;
+      this.ambulances = DEFAULT_AMBULANCES;
+      return;
+    }
+
     this.ambulancesLoading = true;
     this.http.get<AmbulanceDto[]>(`${BASE_URL}/ambulances/hospital/${this.hospitalId}`)
       .subscribe({
@@ -101,12 +118,7 @@ export class WebCasesCardAddComponent implements OnInit {
         },
         error: () => {
           this.ambulancesLoading = false;
-          this.ambulances = [
-            { ambulanceId: 1,  vehicleNumber: 'AMB-001', operationalStatus: 'Active' },
-            { ambulanceId: 2,  vehicleNumber: 'AMB-002', operationalStatus: 'Active' },
-            { ambulanceId: 3,  vehicleNumber: 'AMB-003', operationalStatus: 'Active' },
-            { ambulanceId: 27, vehicleNumber: 'AMB-027', operationalStatus: 'Active' },
-          ];
+          this.ambulances = DEFAULT_AMBULANCES;
         }
       });
   }
@@ -171,7 +183,6 @@ export class WebCasesCardAddComponent implements OnInit {
               name:       `${firstName} ${lastName}`,
               status:     this.initialData.status || 'online',
               ambulance:  this.ambulances.find(a => a.ambulanceId === ambulanceId)?.vehicleNumber || this.initialData.ambulance || '—',
-              ambulanceId,
               totalCases: this.initialData.totalCases || 0,
               avgTime:    this.initialData.avgTime    || '—',
               lastActive: 'Active now',
@@ -211,7 +222,6 @@ export class WebCasesCardAddComponent implements OnInit {
               name:       `${firstName} ${lastName}`,
               status:     'online',
               ambulance:  this.ambulances.find(a => a.ambulanceId === ambulanceId)?.vehicleNumber || '—',
-              ambulanceId,
               totalCases: 0,
               avgTime:    '—',
               lastActive: 'Active now',

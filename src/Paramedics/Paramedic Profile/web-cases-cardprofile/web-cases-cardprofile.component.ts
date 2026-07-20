@@ -13,7 +13,8 @@ import { CardMComponent }              from '../card-m/card-m.component';
 import { Direction1profileComponent }  from '../direction1profile/direction1profile.component';
 import { DeleteComponent }             from '../delete/delete.component';
 import { WebCasesCardAddComponent }    from '../../Add Paramedics/web-cases-card-add/web-cases-card-add.component';
-
+import { inject } from '@angular/core';
+import { AuthService } from '../../../auth/services/services';
 Chart.register(...registerables);
 
 const BASE_URL = 'https://rivenbackend-production.up.railway.app/api';
@@ -116,9 +117,11 @@ export class WebCasesCardprofileComponent implements OnInit, AfterViewInit, OnDe
     return parseInt(this.paramedicId.replace(/\D/g, ''), 10);
   }
 
-  private get hospitalId(): number {
-    return JSON.parse(localStorage.getItem('riven_user') || '{}')?.hospitalId ?? 0;
-  }
+private authService = inject(AuthService);
+
+private get hospitalId(): number {
+  return this.authService.getHospitalId() ?? 0;
+}
 
   constructor(
     private route:    ActivatedRoute,
@@ -145,6 +148,11 @@ export class WebCasesCardprofileComponent implements OnInit, AfterViewInit, OnDe
   loadAll(): void {
     this.isLoading = true;
     this.hasError  = false;
+
+    if (!this.hospitalId) {
+      this.isLoading = false;
+      return;
+    }
 
     forkJoin({
       profile:    this.http.get<any>(`${BASE_URL}/users/${this.numericId}`)

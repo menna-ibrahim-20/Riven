@@ -67,29 +67,41 @@ sendOtp(data: { email?: string; phone?: string }): Observable<{ message: string 
 
   // ── TOKEN ──────────────────────────────────────────
   saveToken(token: string): void {
+  if (typeof localStorage !== 'undefined') {
     localStorage.setItem('riven_token', token);
   }
+}
 
-  getToken(): string | null {
+getToken(): string | null {
+  if (typeof localStorage !== 'undefined') {
     return localStorage.getItem('riven_token');
   }
+  return null;
+}
 
-  saveUser(user: any): void {
-  localStorage.setItem('riven_user', JSON.stringify(user));
+saveUser(user: any): void {
+  if (typeof localStorage !== 'undefined') {
+    localStorage.setItem('riven_user', JSON.stringify(user));
+  }
 }
 
 getUser(): any {
-  const user = localStorage.getItem('riven_user');
-  return user ? JSON.parse(user) : null;
+  if (typeof localStorage !== 'undefined') {
+    const user = localStorage.getItem('riven_user');
+    return user ? JSON.parse(user) : null;
+  }
+  return null;
 }
 
 getHospitalId(): number | null {
   return this.getUser()?.hospitalId ?? null;
 }
-  logout(): void {
+
+logout(): void {
+  if (typeof localStorage !== 'undefined') {
     localStorage.removeItem('riven_token');
   }
-
+}
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
